@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../../../../resources/css/myPage/followingstyle.css">
+  <link rel="stylesheet" href="../../../resources/css/myPage/followingstyle.css">
 
 
   <style>
@@ -43,18 +46,24 @@
 
 <body>
   <div class="div">
+
+  <div class="col-auto sidebar d-flex flex-column align-items-start p-0">
+          <jsp:include page="/WEB-INF/views/includes/mypagenav/myPageNav.jsp" />
+        </div>
+
+
     <div class="icon-heroicons-outline-lock-open"></div>
     <div class="icon-heroicons-outline-user"></div>
     <div class="table">
       <div class="header">
         <div class="auto-layout-vertical">
-          <div class="div2">
+          <div class="div22">
             <span>
-              <span class="div-2-span">
+              <span class="div-22-span">
                 팔로우
                 <br />
               </span>
-              <span class="div-2-span2">
+              <span class="div-22-span2">
                 회원님의 팔로잉, 팔로워 목록을 볼 수 있습니다.
               </span>
             </span>
@@ -65,7 +74,7 @@
         <div class="tabs">
           <div class="tab2">
             <div class="text-container">
-              <a href="">
+              <a href="/myPage/following">
                 <div class="tab-text" style="margin-left: 30px;">팔로잉</div>
               </a>
               <div class="badge">
@@ -75,7 +84,7 @@
           </div>
           <div class="tab">
             <div class="text-container">
-              <a href="">
+              <a href="/myPage/follower">
                 <div class="tab-text" style="margin-left: 30px;">팔로워</div>
               </a>
               <div class="badge">
@@ -124,7 +133,7 @@
               <div class="user-card">
                 <a href="">
                   <div class="user-thumb">
-                    <img class="icon-jam-icons-outline-logos-user" src="../../../../resources/images/myPage/icon-jam-icons-outline-logos-user0.svg" />
+                    <img class="icon-jam-icons-outline-logos-user" src="../../../resources/images/myPage/icon-jam-icons-outline-logos-user0.svg" />
                   </div>
                 </a>
                 <div class="details">

@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,15 +48,17 @@
   <title>리플렛 - 내 정보</title>
 </head>
 
+
+
+
 <body>
   <div class="div">
+
+  <!-- nav -->
+                <jsp:include page="/WEB-INF/views/includes/mypagenav/myPageNav.jsp" />
+                <!-- nav -->
+
     <div class="page-content">
-
-      <!-- nav -->
-
-      <!-- nav -->
-
-
 
       <div class="table">
         <div class="header">

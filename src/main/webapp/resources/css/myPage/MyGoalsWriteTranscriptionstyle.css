@@ -1,13 +1,14 @@
-.div,
-.div * {
+.div-modal,
+.div-modal * {
   box-sizing: border-box;
 }
-.div {
+.div-modal {
   background: var(--default-white, #ffffff);
   border-style: solid;
   border-color: var(--coolgray-20, #dde1e6);
   border-width: 0.0625rem;
   padding: 3rem;
+  padding-left: 4rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -16,7 +17,7 @@
   height: 27.25rem;
   position: relative;
 }
-.section-text {
+.section-text-modal {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -26,7 +27,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.top {
+.top-modal {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -36,7 +37,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.secondary-headline {
+.secondary-headline-modal {
   color: var(--coolgray-90, #21272a);
   text-align: left;
   font-family: var(--heading-2-font-family, "Roboto-Bold", sans-serif);
@@ -46,7 +47,7 @@
   position: relative;
   align-self: stretch;
 }
-.paragraph {
+.paragraph-modal {
   color: var(--coolgray-90, #21272a);
   text-align: left;
   font-family: var(--body-l-font-family, "Roboto-Regular", sans-serif);
@@ -56,7 +57,7 @@
   position: relative;
   align-self: stretch;
 }
-.form-5-fields-checkbox-button {
+.form-5-fields-checkbox-button-modal {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -66,7 +67,7 @@
   width: 38.5rem;
   position: relative;
 }
-.text-field {
+.text-field-modal {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -76,7 +77,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.label-and-field {
+.label-and-field-modal {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -86,7 +87,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.label {
+.label-modal {
   color: var(--coolgray-90, #21272a);
   text-align: left;
   font-family: var(--body-s-font-family, "Roboto-Regular", sans-serif);
@@ -96,7 +97,7 @@
   position: relative;
   align-self: stretch;
 }
-.field {
+.field-modal {
   background: var(--coolgray-10, #f2f4f8);
   border-style: solid;
   border-color: var(--coolgray-30, #c1c7cd);
@@ -112,7 +113,7 @@
   height: 3rem;
   position: relative;
 }
-.text {
+.text-modal {
   color: var(--coolgray-60, #697077);
   text-align: left;
   font-family: var(--body-m-font-family, "Roboto-Regular", sans-serif);
@@ -122,7 +123,7 @@
   position: relative;
   flex: 1;
 }
-.buttons-group {
+.buttons-group-modal {
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -132,7 +133,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.button {
+.button-modal {
   background: var(--primary-60, #0f62fe);
   border-style: solid;
   border-color: var(--primary-60, #0f62fe);
@@ -147,7 +148,7 @@
   height: 3rem;
   position: relative;
 }
-.text-container {
+.text-container-modal {
   padding: 0rem 1rem 0rem 1rem;
   display: flex;
   flex-direction: row;
@@ -157,7 +158,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.button-text {
+.button-text-modal {
   color: var(--default-white, #ffffff);
   text-align: left;
   font-family: var(--button-m-font-family, "Roboto-Medium", sans-serif);
@@ -167,3 +168,8 @@
   font-weight: var(--button-m-font-weight, 500);
   position: relative;
 }
+
+.field-modal input {
+  width: 100%;
+  height: 100%;
+ }

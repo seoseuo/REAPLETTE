@@ -62,14 +62,14 @@
   flex: 1;
   position: relative;
 }
-.div2 {
+.div22 {
   color: var(--color-secondary-100, #283747);
   text-align: left;
   position: relative;
   align-self: stretch;
   height: 3.5rem;
 }
-.div-2-span {
+.div-22-span {
   color: var(--color-secondary-100, #283747);
   font-family: var(
     --heading-40-medium-font-family,
@@ -80,7 +80,7 @@
   line-height: var(--heading-40-medium-line-height, 3.5rem);
   font-weight: var(--heading-40-medium-font-weight, 700);
 }
-.div-2-span2 {
+.div-22-span2 {
   color: var(--color-secondary-100, #283747);
   font-family: "PlusJakartaSans-Medium", sans-serif;
   font-size: 1.25rem;

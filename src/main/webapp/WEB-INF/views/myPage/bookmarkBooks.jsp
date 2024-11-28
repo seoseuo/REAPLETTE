@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="../../../../resources/css/myPage/bookmarkBooksstyle.css">
+  <link rel="stylesheet" href="../../../resources/css/myPage/bookmarkBooksstyle.css">
   
   <style>
    a,
@@ -36,24 +39,29 @@
   <title>리플렛 - 찜 도서</title>
 </head>
 <body>
-  
+
+
   <div class="div">
     <!-- 아이콘 섹션 -->
+  <!-- nav -->
+  <jsp:include page="/WEB-INF/views/includes/mypagenav/myPageNav.jsp" />
+  <!-- nav -->
+
     <div class="icon-heroicons-outline-lock-open"></div>
     <div class="icon-heroicons-outline-user"></div>
-    
+
     <!-- 카드뷰 컨테이너 -->
     <div class="table">
       <!-- 헤더 섹션 -->
       <div class="header">
         <div class="auto-layout-vertical">
-          <div class="div2">
+          <div class="div22">
             <span>
-              <span class="div-2-span">
+              <span class="div-22-span">
                 찜 도서
                 <br />
               </span>
-              <span class="div-2-span2">
+              <span class="div-22-span2">
                 내가 찜한 도서를 확인할 수 있어요 !
                 <br />
                 나의 개인 맞춤 추천에 반영됩니다 !
@@ -84,7 +92,7 @@
                           <span class="div-3-span2">저자 명</span>
                         </span>
                       </div>
-                      
+
                     </div>
                   </div>
                 </a>
@@ -149,8 +157,8 @@
                         <span class="div-3-span4">저자 명</span>
                       </span>
                     </div>
-                    
-                    
+
+
                   </div>
                 </div>
               </a>

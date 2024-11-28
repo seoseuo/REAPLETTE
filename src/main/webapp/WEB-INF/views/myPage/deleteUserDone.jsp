@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
-  <link rel="stylesheet" href="../../../../resources/css/myPage/deleteUserGuidestyle.css">
+  <link rel="stylesheet" href="../../../resources/css/myPage/deleteUserGuidestyle.css">
   
   
   <style>
@@ -35,8 +37,10 @@
        margin: 0;
        padding: 0;
    }
+
+   
    </style>
-  <title>Document</title>
+  <title>리플렛 - 회원탈퇴</title>
 </head>
 <body>
   <div class="div">
@@ -57,23 +61,28 @@
           <div class="page-content">
             <img
               class="icon-jam-icons-outline-logos-rocket"
-              src="../../../../resources/images/myPage/icon-jam-icons-outline-logos-rocket0.svg"
+              src="../../../resources/images/myPage/icon-jam-icons-outline-logos-check0.svg"
             />
             <div class="section-text">
               <div class="top">
-                <div class="main-headline">회원탈퇴</div>
-                <div class="secondary-headline">안내문을 읽어주세요</div>
+                <div class="main-headline">감사합니다.</div>
+                <div class="secondary-headline">탈퇴 처리가 완료되었습니다.</div>
               </div>
               <div class="paragraph">
-                '리플렛' 서비스를 이용해주셔서 감사합니다. 회원 탈퇴를 진행하시면<br>회원 정보는 복구되지 않으며 모든 개인화된 추천 내역도 삭제됩니다.<br>탈퇴 후에는 더 이상 맞춤형 도서 추천 서비스를 제공받으실 수 없으니<br>신중히 결정해 주시기 바랍니다.탈퇴 후에도 언제든지 재가입이 가능하니<br>필요하시다면 다시 찾아주시면 감사하겠습니다.
+                
+                그동안 '리플렛' 서비스를 이용해주셔서 진심으로 감사드립니다. 함께 해주셔서 정말 즐거웠습니다.<br>
 
+                언제든지 다시 찾아와 주시면 기쁜 마음으로 맞이하겠습니다.<br>
+                더 나은 서비스로 다시 인사드릴 수 있기를 바랍니다.
+                <br>
+                감사합니다!
 
               </div>
             </div>
             <div class="button">
               <div class="text-container">
                 <a href="">
-                  <div class="div3">탈퇴하기</div>
+                  <div class="div3">홈 으로</div>
                 </a>
               </div>
             </div>

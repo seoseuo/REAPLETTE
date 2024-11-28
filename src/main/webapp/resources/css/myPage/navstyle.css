@@ -1,7 +1,19 @@
+
+
 .desktop-vertical-logged-in-buttons-bottom,
 .desktop-vertical-logged-in-buttons-bottom * {
   box-sizing: border-box;
 }
+
+/* 특정 요소에 대해 드래그 불가능 설정 */
+* {
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+
 .desktop-vertical-logged-in-buttons-bottom {
   background: var(--default-white, #ffffff);
   border-style: solid;
