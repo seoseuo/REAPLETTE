@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header>
-<link rel="stylesheet" href="../../resources/css/headerstyle.css">
+<link rel="stylesheet" href="../../../../resources/css/headerstyle.css">
 
 
   <div class="desktop-horizontal-logo-left-not-logged-menu-bottom-search-icons-right">
@@ -21,7 +24,7 @@
           
           <input class="text2" placeholder="검색어를 입력하세요 . . .">
           <img class="icon-jam-icons-outline-logos-search"
-          src="../../resources/images/icon-jam-icons-outline-logos-search0.svg" />
+          src="../../../../resources/images/icon-jam-icons-outline-logos-search0.svg" />
         </div>
       </form>
 
@@ -30,7 +33,7 @@
       <a href="/community/main">
         <div class="buttons-group">
           <img class="icon-heroicons-outline-user-group"
-            src="../../resources/images/icon-heroicons-outline-user-group0.svg" />
+            src="../../../../resources/images/icon-heroicons-outline-user-group0.svg" />
         </div>
       </a>
 
@@ -38,7 +41,7 @@
       <a href="/notification/list">
         <div class="button">
           <img class="icon-jam-icons-outline-logos-bell"
-            src="../../resources/images/icon-jam-icons-outline-logos-bell0.svg" />
+            src="../../../../resources/images/icon-jam-icons-outline-logos-bell0.svg" />
         </div>
       </a>
 
@@ -46,7 +49,7 @@
       <a href="/myPage/info">
         <div class="user-thumb">
           <img class="icon-jam-icons-outline-logos-user"
-            src="../../resources/images/icon-jam-icons-outline-logos-user0.svg" />
+            src="../../../../resources/images/icon-jam-icons-outline-logos-user0.svg" />
         </div>
 
       </a>

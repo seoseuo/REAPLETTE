@@ -1,4 +1,4 @@
-package com.reaplette.demo;
+package com.reaplette;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
