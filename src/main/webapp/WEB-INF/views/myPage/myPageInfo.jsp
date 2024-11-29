@@ -80,12 +80,14 @@
           <div class="table2">
 
             <!-- 이미지 업로드 -->
-            <a href="">
+            <label for="profile_image" style="cursor: pointer;">
               <div class="user-thumb2">
                 <img class="icon-jam-icons-outline-logos-user2"
                   src="../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" />
               </div>
-            </a>
+            </label>
+            <!-- 실제 파일 업로드 입력 요소 (숨김 처리) -->
+            <input type="file" id="profile_image" name="profile_image" accept="image/*" style="display: none;">
 
             <div class="table3">
               <div class="headline">
@@ -93,12 +95,7 @@
                   <div class="top">
                     <div class="secondary-headline">
                       기본 정보
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br /><br /><br />
+                      <br /><br /><br /><br /><br /><br /><br /><br />
                       비밀번호
                     </div>
                   </div>
@@ -108,19 +105,15 @@
               <div class="section-text2">
                 <div class="top">
                   <div class="secondary-headline2">
-                    이메일       
-                    <br />
-                    <br /><br />
+                    이메일
+                    <br /><br /><br />
                     이름
-                    <br /><br />
-                    <br />
+                    <br /><br /><br />
                     전화번호
-                    <br />
-                    <br />
-                    
+                    <br /><br />
+
                     비밀번호 재설정
-                    <br />
-                    <br />
+                    <br /><br />
                     비밀번호 확인
                   </div>
                 </div>
@@ -128,33 +121,30 @@
 
               <div class="table4">
                 <div class="field">
-                  <input class="text2"type="text" value="기존 값" readonly>
+                  <input class="text2" type="text" value="기존 값" readonly>
                 </div>
                 <div class="field">
-                  <input class="text2"type="text" value="기존 값">
+                  <input class="text2" type="text" value="기존 값">
                 </div>
                 <div class="field2">
-                  <input class="text2"type="test" value="기존 값" placeholder="010-0000-0000">
+                  <input class="text2" type="text" value="기존 값" placeholder="010-0000-0000">
                 </div>
-                
+
                 <div class="field2">
-                  <input class="text2"type="text" value="기존 값" placeholder="영문, 숫자, 특수문자 혼용 8자 이상">            
+                  <input class="text2" type="text" value="기존 값" placeholder="영문, 숫자, 특수문자 혼용 8자 이상">
                 </div>
                 <div class="field2">
-                  <input class="text2"type="text" value="기존 값">
+                  <input class="text2" type="text" value="기존 값">
                 </div>
+
                 <div class="type-primary-size-medium-status-enable">
                   <input type="submit" class="button" value="수정완료">
                 </div>
               </div>
-              
             </div>
-
-            
-
-            
           </div>
         </form>
+
 
       </div>
     </div>

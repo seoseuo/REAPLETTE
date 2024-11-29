@@ -142,7 +142,7 @@ public class MyPageController {
     @GetMapping("/logout")
     public String logout() {
         log.info("GET /myPage/logout - logout");
-        return "/";
+        return "/index";
     }
 
     @GetMapping("/deleteUserGuide")

@@ -76,7 +76,7 @@
                 <img class="icon-jam-icons-outline-logos-users" src="../../../..//resources/images/myPage/icon-jam-icons-outline-logos-pictures0.svg" />
                 <div class="div2">커뮤니티</div>
             </a>
-            <a href="/logout" class="menu-item4">
+            <a href="/myPage/logout" class="menu-item4">
                 <img class="icon-jam-icons-outline-logos-users" src="../../../..//resources/images/myPage/icon1.svg" />
                 <div class="div2">로그아웃</div>
             </a>
