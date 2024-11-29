@@ -10,7 +10,7 @@
           <div class="logo">
 
             <!-- 메인 이동 -->
-            <a href="/index">
+            <a href="/myPage/logout">
               <div class="text">
                 <div class="webby-frames">REAPLETTE</div>
                 <div class="for-figma"></div>

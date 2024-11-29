@@ -1,8 +1,11 @@
 package com.reaplette.mypage.controller;
 
+import com.reaplette.domain.UserVO;
+import com.reaplette.mypage.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,15 +16,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myPage")
 
 public class MyPageController {
+
+    private final MyPageService myPageService;
+
     @GetMapping("/info")
-    public String getMyPageInfo() {
+    public String getMyPageInfo(Model model) {
         log.info("GET /myPage/info - Accessing MyPage Info");
+        //테스트 볼 때만 넣는 test@naver.com
+        UserVO user = myPageService.getUser("test@naver.com");
+
+        log.info(user);
+
+        model.addAttribute("user",user);
+
         return "myPage/myPageInfo";
     }
 
     @PostMapping("/editInfo")
     public String postEditInfo() {
         log.info("POST /myPage/editInfo - Editing MyPage Info");
+
         return "myPage/myPageInfo";
     }
 

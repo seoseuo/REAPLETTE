@@ -12,6 +12,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="../../../resources/css/myPage/infostyle.css">
+  <link rel="stylesheet" href="../../../resources/css/myPage/exceptionstyle.css">
+
+
 
 
   <style>
@@ -76,26 +79,32 @@
         </div>
         
         
-        <form action="//myPage/editInfo" method="POST" enctype="multipart/form-data">
+        <form id="myInfo" action="/myPage/editInfo" method="POST" enctype="multipart/form-data">
           <div class="table2">
 
             <!-- 이미지 업로드 -->
-            <label for="profile_image" style="cursor: pointer;">
+            <label for="profileimage" style="cursor: pointer;">
               <div class="user-thumb2">
                 <img class="icon-jam-icons-outline-logos-user2"
                   src="../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" />
+                  <!-- ../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg -->
               </div>
             </label>
+            <br>
+            <a href="" >기본 프로필</a>
+            
+            
             <!-- 실제 파일 업로드 입력 요소 (숨김 처리) -->
-            <input type="file" id="profile_image" name="profile_image" accept="image/*" style="display: none;">
+            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;" value="${user.getProfileImagePath}">
 
+            <span class="exception-field" id="profile-exception-field"></span>
             <div class="table3">
               <div class="headline">
                 <div class="section-text">
                   <div class="top">
                     <div class="secondary-headline">
                       기본 정보
-                      <br /><br /><br /><br /><br /><br /><br /><br />
+                      <br /><br /><br /><br /><br/>
                       비밀번호
                     </div>
                   </div>
@@ -106,35 +115,36 @@
                 <div class="top">
                   <div class="secondary-headline2">
                     이메일
-                    <br /><br /><br />
-                    이름
-                    <br /><br /><br />
-                    전화번호
+                    <br />
                     <br /><br />
+                    이름
+                    <br />
+                    <span class="exception-field" id="name-exception-field"></span>
+                    <br />
 
                     비밀번호 재설정
-                    <br /><br />
+                    <br />
+                    <span class="exception-field" id="pw-exception-field"></span>
+                    <br />
                     비밀번호 확인
+                    <br/>
+                    <span class="exception-field" id="pw-check-exception-field"></span>
                   </div>
                 </div>
               </div>
 
               <div class="table4">
                 <div class="field">
-                  <input class="text2" type="text" value="기존 값" readonly>
+                  <input class="text2" type="text" id="id" name="id" value="${user.getId}" readonly>
                 </div>
                 <div class="field">
-                  <input class="text2" type="text" value="기존 값">
+                  <input class="text2" type="text" id="name" name="name" value="${user.getName}">
                 </div>
                 <div class="field2">
-                  <input class="text2" type="text" value="기존 값" placeholder="010-0000-0000">
-                </div>
-
-                <div class="field2">
-                  <input class="text2" type="text" value="기존 값" placeholder="영문, 숫자, 특수문자 혼용 8자 이상">
+                  <input class="text2" type="password" id="pw" name="pw">
                 </div>
                 <div class="field2">
-                  <input class="text2" type="text" value="기존 값">
+                  <input class="text2" type="password" id="pw-check" name="pw-check">
                 </div>
 
                 <div class="type-primary-size-medium-status-enable">
@@ -151,6 +161,7 @@
     <div class="icon-heroicons-outline-user"></div>
   </div>
 
-</body>
+<script src="../../../resources/js/myPage/exceptionstyle.js"></script>
 
+</body>
 </html>

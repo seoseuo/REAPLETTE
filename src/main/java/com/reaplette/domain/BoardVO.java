@@ -8,11 +8,7 @@ public class BoardVO {
     private String id; // 사용자 ID (게시글 작성자)
     private String title; // 게시글 제목
     private String content; // 게시글 내용
-    private String postImagePath1; // 게시글 이미지 1
-    private String postImagePath2; // 게시글 이미지 2
-    private String postImagePath3; // 게시글 이미지 3
-    private String postImagePath4; // 게시글 이미지 4
-    private String postImagePath5; // 게시글 이미지 5
+    private String postImagePath; // 게시글 이미지
     private String date;  // 게시글 날짜 (YY/MM/DD 형식)
     private int likeCount = 0; // 좋아요 수
     private int commentCount = 0; // 댓글 수
