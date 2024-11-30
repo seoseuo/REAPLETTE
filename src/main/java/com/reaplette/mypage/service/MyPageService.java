@@ -19,4 +19,9 @@ public class MyPageService {
         log.info("getUser....." + id);
         return userMapper.getUser(id);
     }
+
+    public int setUser(UserVO user) {
+        log.info("getUser....." + user);
+        return userMapper.setUser(user);
+    }
 }

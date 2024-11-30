@@ -66,17 +66,21 @@
         <form id="myInfo" action="/myPage/editInfo" method="POST" enctype="multipart/form-data">
           <div class="table2">
             <!-- 이미지 업로드 -->
+            <br><br>
             <label for="profileimage" style="cursor: pointer;">
               <div class="user-thumb2">
-                <img class="icon-jam-icons-outline-logos-user2"
+                <img id="profilePreview" class="icon-jam-icons-outline-logos-user2"
                      src="${user.profileImagePath}" /> <!-- 수정된 부분 -->
               </div>
             </label>
             <br>
-            <a href="">기본 프로필</a>
+
+            <a href="#" id="deleteProfileLink"><b>프로필 삭제</b></a>
+            <!-- 클릭 시 ../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" -->
 
             <!-- 실제 파일 업로드 입력 요소 (숨김 처리) -->
-            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;">
+            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;" onchange="previewProfileImage()">
+
 
             <span class="exception-field" id="profile-exception-field"></span>
             <div class="table3">
@@ -128,7 +132,7 @@
                   <input class="text2" type="password" id="pw-check" name="pw-check">
                 </div>
 
-                <div class="type-primary-size-medium-status-enable">
+                <div class="type-primary-size-medium-status-enable" style="cursor: pointer;">
                   <input type="submit" class="button" value="수정완료">
                 </div>
               </div>
@@ -141,5 +145,6 @@
   </div>
 
   <script src="../../../resources/js/myPage/exceptionstyle.js"></script>
+  <script src="../../../resources/js/myPage/myPageInfo.js"></script>
 </body>
 </html>
