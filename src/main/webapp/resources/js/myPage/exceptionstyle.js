@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 폼 검증을 수행하는 함수
   function validateForm() {
     const form = document.querySelector("#myInfo"); // ID가 myInfo인 폼 요소 선택
-    const profileImageInput = document.querySelector("#profileimage");
+    const profileImageInput = document.querySelector("#profileImagePathForm");
     const nameInput = document.querySelector("#name");
     const pwInput = document.querySelector("#pw");
     const pwCheckInput = document.querySelector("#pw-check");
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
     if (!pwRegex.test(password)) {
-      document.getElementById("pw-exception-field").textContent = "비밀번호는 영문, 숫자, 특수문자를 혼용하여 8~20자로 작성해주세요.";
+      document.getElementById("pw-exception-field").textContent = "영문, 숫자, 특수문자를 혼용하여 8~20자로 작성해주세요.";
       return false;
     }
 

@@ -1,39 +1,55 @@
 function previewProfileImage() {
-  const fileInput = document.getElementById('profileimage');
+  const fileInput = document.getElementById('profileImagePathForm');
   const preview = document.getElementById('profilePreview');
+  const hiddenInput = document.getElementById('profileImagePath');
 
   if (fileInput.files && fileInput.files[0]) {
-    const reader = new FileReader();
-    
-    reader.onload = function(e) {
-      preview.src = e.target.result; // 선택한 파일을 이미지로 표시
-    };
-    
-    reader.readAsDataURL(fileInput.files[0]);
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+          preview.src = e.target.result; // 선택한 파일을 미리보기로 표시
+          document.getElementById('profilePathTest').innerHTML = fileInput.files[0].name;
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+
+      // 파일 선택 시 hidden input을 비워야 함
+      hiddenInput.value = "";
   }
 }
 
-function deleteProfilePreview() {
-  // 링크 클릭 기본 동작 방지
-  event.preventDefault();
+function deleteProfilePreview(event) {
+  if (event) {
+      event.preventDefault();
+  }
 
-  // 미리보기 이미지 경로 설정
-  const imagePath = '../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg';
+  const defaultImagePath = "../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg";
+  const preview = document.getElementById('profilePreview');
+  const hiddenInput = document.getElementById('profileImagePath');
 
-  // 이미지 미리보기 요소를 가져오기
-  const imagePreview = document.getElementById('profilePreview');
-
-  // 이미지 경로를 설정하고 미리보기를 보여줍니다.
-  imagePreview.src = imagePath;
-
-  // 기본 이미지 경로로 설정
-  const fileInput = document.getElementById('profileimage');
-  fileInput.value = imagePath; // 선택된 파일의 전체 경로를 반환하지 않음, 파일의 이름만 반환됩니다.
-
-
-
+  // 기본 이미지로 되돌림
+  preview.src = defaultImagePath;
+  hiddenInput.value = defaultImagePath;
+  document.getElementById('profilePathTest').innerHTML=defaultImagePath;
 }
 
 // 이벤트 리스너 등록
 document.getElementById('deleteProfileLink').addEventListener('click', deleteProfilePreview);
 
+function showPw() {
+  const pwToggle = document.getElementById('pwToggle');
+  const pw = document.getElementById('pw');
+  const pwCheck = document.getElementById('pw-check');
+
+  if (pw.type === "password") {
+      // 비밀번호가 숨겨져 있을 때
+      pw.type = "text";
+      pwCheck.type = "text";
+      pwToggle.innerHTML = "숨기기";
+  } else {
+      // 비밀번호가 보일 때
+      pw.type = "password";
+      pwCheck.type = "password";
+      pwToggle.innerHTML = "보기";
+  }
+}

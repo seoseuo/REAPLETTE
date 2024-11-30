@@ -3,6 +3,7 @@ package com.reaplette.mypage.mappers;
 import com.reaplette.domain.UserVO;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 @Mapper
 public interface MyPageMapper {

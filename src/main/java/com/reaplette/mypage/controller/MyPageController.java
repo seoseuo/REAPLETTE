@@ -4,11 +4,15 @@ import com.reaplette.domain.UserVO;
 import com.reaplette.mypage.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.catalina.User;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @Log4j2
@@ -24,20 +28,29 @@ public class MyPageController {
         log.info("GET /myPage/info - Accessing MyPage Info");
         //테스트 볼 때만 넣는 test@naver.com
         UserVO user = myPageService.getUser("test@naver.com");
-
         log.info(user);
-
         model.addAttribute("user",user);
-
         return "myPage/myPageInfo";
     }
 
     @PostMapping("/editInfo")
-    public String postEditInfo() {
-        log.info("POST /myPage/editInfo - Editing MyPage Info");
+    public String postEditInfo(UserVO user,
+                               Model model,
+                               @RequestParam("profileImagePathForm") MultipartFile profileImagePathForm) {
 
-        return "myPage/myPageInfo";
+        if (user.getProfileImagePath() != null && !user.getProfileImagePath().equals("../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg")) {
+            user.setProfileImagePath(profileImagePathForm.getOriginalFilename());
+        }
+
+        log.info("POST /myPage/editInfo - Editing MyPage Info");
+        log.info(user);
+
+        myPageService.setUser(user,profileImagePathForm);
+
+        // 리다이렉트
+        return "redirect:/myPage/info";
     }
+
 
     @GetMapping("/myGoalsList")
     public String getMyGoalsList() {

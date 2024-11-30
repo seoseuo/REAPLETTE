@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <nav>
-    <link rel="stylesheet" href="../../../..//resources/css/myPage/navstyle.css">
+    <link rel="stylesheet" href="../../../../resources/css/myPage/navstyle.css">
     <style>
         a,
         button,

@@ -67,7 +67,7 @@
           <div class="table2">
             <!-- 이미지 업로드 -->
             <br><br>
-            <label for="profileimage" style="cursor: pointer;">
+            <label for="profileImagePathForm" style="cursor: pointer;">
               <div class="user-thumb2">
                 <img id="profilePreview" class="icon-jam-icons-outline-logos-user2"
                      src="${user.profileImagePath}" /> <!-- 수정된 부분 -->
@@ -79,8 +79,12 @@
             <!-- 클릭 시 ../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" -->
 
             <!-- 실제 파일 업로드 입력 요소 (숨김 처리) -->
-            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;" onchange="previewProfileImage()">
-
+            <input type="file" id="profileImagePathForm" name="profileImagePathForm" accept="image/*" style="display: none;" onchange="previewProfileImage()">
+            
+            <!-- DB에 저장될 경로 -->
+            <input type="hidden" id="profileImagePath" name="profileImagePath" value="${user.profileImagePath}">        
+            
+            <!-- <sapn id="profilePathTest">${user.profileImagePath}</sapn> -->
 
             <span class="exception-field" id="profile-exception-field"></span>
             <div class="table3">
@@ -89,7 +93,7 @@
                   <div class="top">
                     <div class="secondary-headline">
                       기본 정보
-                      <br /><br /><br /><br /><br/>
+                      <br /><br /><br /><br />
                       비밀번호
                     </div>
                   </div>
@@ -121,20 +125,21 @@
               <div class="table4">
                 <div>
                   ${user.id}
+                  <input type="hidden" id="id" name="id" value="${user.id}">
                 </div>
                 <div class="field">
-                  <input class="text2" type="text" id="name" name="name" value="${user.username}"> <!-- 수정된 부분 -->
+                  <input class="text2" type="text" id="name" name="username" value="${user.username}"> <!-- 수정된 부분 -->
                 </div>
                 <div class="field2">
-                  <input class="text2" type="password" id="pw" name="pw">
+                  <input class="text2" type="password" id="pw" name="pw" value="${user.pw}"> <button type="button" id="pwToggle" onclick="showPw()" style="cursor: pointer;">보기</button>
                 </div>
                 <div class="field2">
-                  <input class="text2" type="password" id="pw-check" name="pw-check">
+                  <input class="text2" type="password" id="pw-check" value="${user.pw}" name="pw-check">
                 </div>
 
-                <div class="type-primary-size-medium-status-enable" style="cursor: pointer;">
-                  <input type="submit" class="button" value="수정완료">
-                </div>
+                <label class="type-primary-size-medium-status-enable" style="cursor: pointer;">
+                    <input type="submit" class="button" value="수정완료">
+                  </label>
               </div>
             </div>
           </div>
