@@ -17,10 +17,6 @@ public class MyPageService {
 
     public UserVO getUser(String id) {
         log.info("getUser....." + id);
-        UserVO user = userMapper.getUser(id);
-
-        log.info(user);
-
-        return user;
+        return userMapper.getUser(id);
     }
 }

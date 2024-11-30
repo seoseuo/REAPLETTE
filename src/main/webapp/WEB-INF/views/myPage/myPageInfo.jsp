@@ -4,19 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <link rel="stylesheet" href="../../../resources/css/myPage/infostyle.css">
   <link rel="stylesheet" href="../../../resources/css/myPage/exceptionstyle.css">
-
-
-
-
   <style>
     a,
     button,
@@ -34,7 +27,6 @@
       border: none;
       text-decoration: none;
       background: none;
-
       -webkit-font-smoothing: antialiased;
     }
 
@@ -45,24 +37,17 @@
       margin: 0;
       padding: 0;
     }
-
-
   </style>
   <title>리플렛 - 내 정보</title>
 </head>
 
-
-
-
 <body>
   <div class="div">
-
-  <!-- nav -->
-                <jsp:include page="/WEB-INF/views/includes/mypagenav/myPageNav.jsp" />
-                <!-- nav -->
+    <!-- nav -->
+    <jsp:include page="/WEB-INF/views/includes/mypagenav/myPageNav.jsp" />
+    <!-- nav -->
 
     <div class="page-content">
-
       <div class="table">
         <div class="header">
           <div class="auto-layout-vertical">
@@ -77,25 +62,21 @@
             </div>
           </div>
         </div>
-        
-        
+
         <form id="myInfo" action="/myPage/editInfo" method="POST" enctype="multipart/form-data">
           <div class="table2">
-
             <!-- 이미지 업로드 -->
             <label for="profileimage" style="cursor: pointer;">
               <div class="user-thumb2">
                 <img class="icon-jam-icons-outline-logos-user2"
-                  src="../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" />
-                  <!-- ../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg -->
+                     src="${user.profileImagePath}" /> <!-- 수정된 부분 -->
               </div>
             </label>
             <br>
-            <a href="" >기본 프로필</a>
-            
-            
+            <a href="">기본 프로필</a>
+
             <!-- 실제 파일 업로드 입력 요소 (숨김 처리) -->
-            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;" value="${user.getProfileImagePath}">
+            <input type="file" id="profileimage" name="profileImagePath" accept="image/*" style="display: none;">
 
             <span class="exception-field" id="profile-exception-field"></span>
             <div class="table3">
@@ -116,7 +97,7 @@
                   <div class="secondary-headline2">
                     이메일
                     <br />
-                    <br /><br />
+                    <br />
                     이름
                     <br />
                     <span class="exception-field" id="name-exception-field"></span>
@@ -134,11 +115,11 @@
               </div>
 
               <div class="table4">
-                <div class="field">
-                  <input class="text2" type="text" id="id" name="id" value="${user.getId}" readonly>
+                <div>
+                  ${user.id}
                 </div>
                 <div class="field">
-                  <input class="text2" type="text" id="name" name="name" value="${user.getName}">
+                  <input class="text2" type="text" id="name" name="name" value="${user.username}"> <!-- 수정된 부분 -->
                 </div>
                 <div class="field2">
                   <input class="text2" type="password" id="pw" name="pw">
@@ -154,14 +135,11 @@
             </div>
           </div>
         </form>
-
-
       </div>
     </div>
     <div class="icon-heroicons-outline-user"></div>
   </div>
 
-<script src="../../../resources/js/myPage/exceptionstyle.js"></script>
-
+  <script src="../../../resources/js/myPage/exceptionstyle.js"></script>
 </body>
 </html>

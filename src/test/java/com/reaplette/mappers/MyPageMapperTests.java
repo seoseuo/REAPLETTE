@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@Transactional  // 테스트 후 데이터 롤백
 public class MyPageMapperTests {
+
+    private static final Logger logger = LoggerFactory.getLogger(MyPageMapperTests.class);
 
     @Autowired
     private MyPageMapper myPageMapper;
@@ -29,6 +32,18 @@ public class MyPageMapperTests {
 
         // 결과 검증
         assertNotNull(user, "User should not be null");
+        // UserVO 객체의 모든 정보를 로그로 출력
+        if (user != null) {
+            logger.info("User ID: " + user.getId());
+            logger.info("Password: " + user.getPw());
+            logger.info("Username: " + user.getUsername());
+            logger.info("Profile Image Path: " + user.getProfileImagePath());
+            logger.info("Sign In Date: " + user.getSignInDate());
+            logger.info("Is Delete: " + user.getIsDelete());
+            logger.info("Follower Count: " + user.getFollowerCount());
+            logger.info("Following Count: " + user.getFollowingCount());
+        }
+        // User ID 확인
         assertEquals(testId, user.getId(), "User ID should match the test ID");
     }
 }
