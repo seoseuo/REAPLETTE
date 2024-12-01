@@ -9,5 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 public interface MyPageMapper {
     // User 정보 가져오기
     UserVO getUser(String id);
-    int setUser(UserVO user);
+    void setUser(UserVO user);
+    boolean isUsernameExists(String username);
 }
+
+

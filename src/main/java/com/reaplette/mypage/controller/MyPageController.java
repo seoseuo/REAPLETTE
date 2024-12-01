@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Log4j2
@@ -29,7 +33,7 @@ public class MyPageController {
         //테스트 볼 때만 넣는 test@naver.com
         UserVO user = myPageService.getUser("test@naver.com");
         log.info(user);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "myPage/myPageInfo";
     }
 
@@ -38,17 +42,28 @@ public class MyPageController {
                                Model model,
                                @RequestParam("profileImagePathForm") MultipartFile profileImagePathForm) {
 
-        if (user.getProfileImagePath() != null && !user.getProfileImagePath().equals("../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg")) {
-            user.setProfileImagePath(profileImagePathForm.getOriginalFilename());
-        }
-
         log.info("POST /myPage/editInfo - Editing MyPage Info");
         log.info(user);
+        log.info("MultipartFile ? : " + profileImagePathForm.getOriginalFilename());
 
-        myPageService.setUser(user,profileImagePathForm);
+        // 파일을 저장해야하게 때문에 파일 자체 또한 파라미터로 넘긴다.
+        myPageService.setUser(user, profileImagePathForm);
 
         // 리다이렉트
         return "redirect:/myPage/info";
+    }
+
+    @GetMapping("/checkUsername")
+    public ResponseEntity<Map<String, Object>> checkUsername(@RequestParam String username) {
+        log.info("GET /myPage/checkUsername - Check User Name");
+        Map<String, Object> response = new HashMap<>();
+
+        // 결과를 맵에 추가
+        //false면 중복
+        response.put("exists", myPageService.isUsernameExists(username));
+
+        // 응답 반환
+        return ResponseEntity.ok(response);
     }
 
 

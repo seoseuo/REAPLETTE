@@ -28,9 +28,15 @@ public class MyPageMapperTests {
     @Test
     public void testGetUser() {
         // 테스트용 데이터 ID (데이터베이스에 존재하는 ID 사용)
-        String testId = "test@naver.com";
+        String testId = "test2@naver.com";
         // 메서드 호출
         UserVO user = myPageMapper.getUser(testId);
         log.info(user);
+    }
+
+    @Test
+    public void testIsUsernameExists() {
+        String username = "테스트";
+        log.info(myPageMapper.isUsernameExists(username));
     }
 }

@@ -1,40 +1,75 @@
-package com.reaplette.mypage.service;
+package com.reaplette.service;
 
 import com.reaplette.domain.UserVO;
-import com.reaplette.mypage.mappers.MyPageMapper;
-import jakarta.servlet.ServletContext;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.apache.catalina.User;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 
-@Service
 @Log4j2
-@RequiredArgsConstructor
-@Transactional
-public class MyPageService {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class MyPageServiceTests {
 
-    private final MyPageMapper userMapper; // 자동 주입
 
-    @Autowired
-    private ServletContext servletContext;
+    @Test
+    public void testSetUser() {
 
-    public UserVO getUser(String id) {
-        log.info("getUser....." + id);
-        return userMapper.getUser(id);
-    }
+//         첫번째 케이스 : 프로필 사진 변경
+//        UserVO user = new UserVO();
+//        user.setId("test@naver.com");
+//        user.setPw("xptmxm1!");
+//        user.setUsername("테스트");
+//        user.setProfileImagePath(""); // 경로 비어 있음
+//
+//        MockMultipartFile profileImagePathForm = new MockMultipartFile(
+//                "profileImagePathForm",
+//                "testProfile.png",
+//                "image/png",
+//                "dummy image content".getBytes()
+//        );
 
-    public void setUser(UserVO user, MultipartFile profileImagePathForm) {
-        log.info("setUser....." + user);
-        log.info("User : " + user);
-        log.info("ProfileImagePathForm : " + profileImagePathForm.getOriginalFilename());
+        // 두번째 케이스 : 프로필 사진 삭제
+//        UserVO user = new UserVO();
+//        user.setId("test@naver.com");
+//        user.setPw("xptmxm1!");
+//        user.setUsername("테스트");
+//        user.setProfileImagePath("../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg"); // 기본 경로
+//
+//        MockMultipartFile profileImagePathForm = new MockMultipartFile(
+//                "profileImagePathForm",
+//                "",
+//                "image/png",
+//                new byte[0]
+//        );
+
+        //세번째 케이스 : 기존 프로필 사용
+        UserVO user = new UserVO();
+        user.setId("test@naver.com");
+        user.setPw("xptmxm1!");
+        user.setUsername("테스트");
+        user.setProfileImagePath("/resources/images/myPage/users/test_naver_com_1733041246691_testProfile.png"); // 기존 프로필 경로
+
+        MockMultipartFile profileImagePathForm = new MockMultipartFile(
+                "profileImagePathForm",
+                "",
+                "image/png",
+                new byte[0]
+        );
+
+        log.info("Starting Test setUser");
+        log.info("Test Case User : " + user);
+        log.info("Test Case ProfileImagePathForm : " + profileImagePathForm.getOriginalFilename());
 
         String defaultProfilePath = "../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg";
+
 
         // 1. 프로필 사진 변경
         // form 존재 , 경로 x
@@ -45,17 +80,16 @@ public class MyPageService {
             // 사용자 ID를 기반으로 파일 접두사를 생성 (특수 문자 '@', '.'를 '_'로 변경)
             String filePrefix = user.getId().replaceAll("[@.]", "_");
 
-
             // 파일 저장 경로 설정
-            String uploadDir = servletContext.getRealPath("/resources/images/myPage/users/");
+            String uploadDir = "src/main/webapp/resources/images/myPage/users/"; // 서버 상의 디렉터리 경로
             String filePath = uploadDir + filePrefix + "_"; // 접두사를 붙인 경로
 
             // 디렉터리 내의 파일 목록 가져오기
             File dir = new File(uploadDir);
             if (dir.exists() && dir.isDirectory()) {
-                // 디렉터리 내의 파일 중 접두사와 일치하는 파일 가져오기
+                // 디렉터리 내의 파일 중 접두사와 일치하는 파일 삭제
                 File[] files = dir.listFiles((d, name) -> name.startsWith(filePrefix));
-                if (files != null && files.length > 0) {
+                if (files != null) {
                     for (File file : files) {
                         if (file.delete()) {
                             // 파일 삭제 성공 시 로그 출력
@@ -66,8 +100,8 @@ public class MyPageService {
                         }
                     }
                 } else {
-                    // 접두사와 일치하는 파일이 없을 경우 무시
-                    log.info("No files found with prefix: " + filePrefix);
+                    // 접두사와 일치하는 파일이 없을 경우 경고 로그 출력
+                    log.warn("No files found with prefix: " + filePrefix);
                 }
             } else {
                 // 디렉터리가 존재하지 않을 경우 경고 로그 출력
@@ -110,15 +144,15 @@ public class MyPageService {
                     String filePrefix = user.getId().replaceAll("[@.]", "_");
 
                     // 파일 저장 경로 설정
-                    String uploadDir = servletContext.getRealPath("/resources/images/myPage/users/");
+                    String uploadDir = "src/main/webapp/resources/images/myPage/users/"; // 서버 상의 디렉터리 경로
                     String filePath = uploadDir + filePrefix + "_"; // 접두사를 붙인 경로
 
                     // 디렉터리 내의 파일 목록 가져오기
                     File dir = new File(uploadDir);
                     if (dir.exists() && dir.isDirectory()) {
-                        // 디렉터리 내의 파일 중 접두사와 일치하는 파일 가져오기
+                        // 디렉터리 내의 파일 중 접두사와 일치하는 파일 삭제
                         File[] files = dir.listFiles((d, name) -> name.startsWith(filePrefix));
-                        if (files != null && files.length > 0) {
+                        if (files != null) {
                             for (File file : files) {
                                 if (file.delete()) {
                                     // 파일 삭제 성공 시 로그 출력
@@ -129,8 +163,8 @@ public class MyPageService {
                                 }
                             }
                         } else {
-                            // 접두사와 일치하는 파일이 없을 경우 무시
-                            log.info("No files found with prefix: " + filePrefix);
+                            // 접두사와 일치하는 파일이 없을 경우 경고 로그 출력
+                            log.warn("No files found with prefix: " + filePrefix);
                         }
                     } else {
                         // 디렉터리가 존재하지 않을 경우 경고 로그 출력
@@ -146,19 +180,26 @@ public class MyPageService {
                     //프로필 사진 삭제 X
                     log.info("Profile image remains unchanged.");
                 }
+
             }
+
+
+
         }
+
+
 //            서버 파일 시스템 경로는 개발자가 파일을 물리적으로 저장하거나 관리하기 위한 로컬 경로입니다.
 //            반면, 웹 경로는 클라이언트가 리소스에 접근하기 위한 HTTP 기반 경로입니다.
 //            예를 들어:
 //            서버 파일 시스템 경로: src/main/webapp/resources/images/myPage/users/sample.jpg
 //            웹 경로: /resources/images/myPage/users/sample.jpg
-        userMapper.setUser(user);
-    }
 
-    public boolean isUsernameExists(String username) {
-        log.info("isUsernameExists....." + username);
-        //false 면 중복
-        return userMapper.isUsernameExists(username);
+        // 최종적으로 user 객체를 저장하는 호출
+
+        log.info("testSetUser....." + user);
+        //userMapper.setUser(user);
+
     }
 }
+
+

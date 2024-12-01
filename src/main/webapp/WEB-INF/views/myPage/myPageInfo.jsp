@@ -129,7 +129,10 @@
                 </div>
                 <div class="field">
                   <input class="text2" type="text" id="name" name="username" value="${user.username}"> <!-- 수정된 부분 -->
+                  <button type="button" id="checkUsernameButton" style="cursor: pointer;"><b>중복 검사</b></button>
+
                 </div>
+                
                 <div class="field2">
                   <input class="text2" type="password" id="pw" name="pw" value="${user.pw}"> <button type="button" id="pwToggle" onclick="showPw()" style="cursor: pointer;">보기</button>
                 </div>
