@@ -1,5 +1,6 @@
 package com.reaplette.service;
 
+import com.reaplette.domain.GoalVO;
 import com.reaplette.domain.UserVO;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -184,7 +186,6 @@ public class MyPageServiceTests {
             }
 
 
-
         }
 
 
@@ -202,4 +203,11 @@ public class MyPageServiceTests {
     }
 }
 
-
+    @Test
+    public List<GoalVO> testGetSearchGoalList(String keyword) {
+        public String CLIENT_ID="0nqy3eo8xrtq5pTnxOHd";  // 불변의 값
+        private String CLIENT_SECRET="vXHMHWnuzb";    // 변경 가능한 값
+        // 네이버 도서 검색 API 서비스를 사용할 예정.
+        // keyword 는 도서명 이 들어갑니다.
+        return null;
+    }
