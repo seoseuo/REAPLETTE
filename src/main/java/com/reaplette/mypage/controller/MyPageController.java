@@ -1,5 +1,6 @@
 package com.reaplette.mypage.controller;
 
+import com.reaplette.domain.GoalVO;
 import com.reaplette.domain.UserVO;
 import com.reaplette.mypage.service.MyPageService;
 import jakarta.servlet.http.HttpSession;
@@ -10,13 +11,11 @@ import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -93,10 +92,13 @@ public class MyPageController {
         return "myPage/myGoals/myGoalsAddBooksModal";
     }
 
+    @ResponseBody
     @GetMapping("/myGoals/search")
-    public String getSearchMyGoals() {
+    public List<GoalVO> getSearchMyGoals(@RequestParam("keyword")String keyword) {
         log.info("GET /myPage/myGoals/search - Searching My Goals");
-        return "myPage/searchMyGoals";
+        log.info("keyword : {}", keyword);
+        List<GoalVO> searchGoalList = myPageService.getSearchGoalList();
+        return searchGoalList;
     }
 
     @PostMapping("/myGoals/select")

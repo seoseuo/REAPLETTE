@@ -242,3 +242,51 @@
   height: 100%;
   box-sizing: border-box; /* 패딩과 테두리도 포함하여 크기 계산 */
 }
+
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%; /* 부모 요소의 가로 길이에 맞춤 */
+}
+.book-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+  gap: 1rem;
+  width: 100%; /* 부모 요소의 가로 길이에 맞춤 */
+  box-sizing: border-box; /* 패딩과 보더를 포함하여 너비 계산 */
+}
+.book-item img {
+  height: 7rem; /* 직사각형 크기로 조정 */
+  width: 4rem; /* 직사각형 크기로 조정 */
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.book-info .title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.book-info .author {
+  color: #555;
+  font-size: 1rem;
+}
+.select-button {
+  padding: 0.5rem 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
