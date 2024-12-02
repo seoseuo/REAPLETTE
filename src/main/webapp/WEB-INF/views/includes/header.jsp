@@ -22,7 +22,7 @@
           <form class="field" action="/search/total">
             <div>
 
-              <input class="text2" placeholder="검색어를 입력하세요 . . .">
+              <input class="text2" name="keyword" placeholder="검색어를 입력하세요 . . .">
               <img class="icon-jam-icons-outline-logos-search"
                 src="../../../../resources/images/icon-jam-icons-outline-logos-search0.svg" />
             </div>

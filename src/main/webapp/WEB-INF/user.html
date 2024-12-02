@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Follow/Unfollow</title>
+    <style>
+        .follow-button, .following-button {
+            border-radius: 12px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 4px;
+            transition: background-color 0.3s;
+        }
+        .follow-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .follow-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Users</h2>
+
+<!-- Display users from the userList -->
+<c:forEach var="user" items="${userList}">
+    <div>
+        <span>${user.username}</span>
+        <c:choose>
+            <c:when test="${fn:contains(followList, user.id)}">
+                <!-- User is followed -->
+                <button class="follow-button" onclick="unfollowUser('${user.id}')">팔로잉</button>
+            </c:when>
+            <c:otherwise>
+                <!-- User is not followed -->
+                <button class="follow-button" onclick="followUser('${user.id}')">팔로우</button>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</c:forEach>
+
+<script>
+    function followUser(targetUserId) {
+        const myId = '${sessionScope.userId}'; // Replace with the actual user ID in session scope
+        fetch(`/search/total/user/follow?myId=${myId}&targetUserId=${targetUserId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload(); // Reload to update the button state
+            } else {
+                alert('Follow action failed!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred!');
+        });
+    }
+
+    function unfollowUser(targetUserId) {
+        const myId = '${sessionScope.userId}'; // Replace with the actual user ID in session scope
+        fetch(`/search/total/user/unfollow?myId=${myId}&targetUserId=${targetUserId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload(); // Reload to update the button state
+            } else {
+                alert('Unfollow action failed!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred!');
+        });
+    }
+</script>
+
+</body>
+</html>

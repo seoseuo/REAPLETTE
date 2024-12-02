@@ -46,10 +46,9 @@
             </div>
         </div>
         <div class="buttons-group">
-            <div class="user-thumb">
-                <img class="icon-jam-icons-outline-logos-user"
-                    src="../../../../resources/images/myPage/icon-jam-icons-outline-logos-user1.svg" />
-            </div>
+                <img class="user-thumb"
+                    src="${user.profileImagePath}" />
+            
         </div>
 
 
