@@ -1,25 +1,34 @@
 package com.reaplette.service;
 
-import com.reaplette.domain.GoalVO;
+
 import com.reaplette.domain.UserVO;
+
+
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.User;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+
+import java.io.*;
+import java.net.*;
+
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+
 public class MyPageServiceTests {
 
+    @Value("${client.id}")
+    String CLIENT_ID;
+
+    @Value("${client.secret}")
+    String CLIENT_SECRET;
 
     @Test
     public void testSetUser() {
@@ -201,13 +210,55 @@ public class MyPageServiceTests {
         //userMapper.setUser(user);
 
     }
-}
+
 
     @Test
-    public List<GoalVO> testGetSearchGoalList(String keyword) {
-        public String CLIENT_ID="0nqy3eo8xrtq5pTnxOHd";  // 불변의 값
-        private String CLIENT_SECRET="vXHMHWnuzb";    // 변경 가능한 값
-        // 네이버 도서 검색 API 서비스를 사용할 예정.
-        // keyword 는 도서명 이 들어갑니다.
-        return null;
+    public void testGetSearchGoalList() {
+        String keyword = "수학";
+
+        URL url;
+        StringBuffer response;
+        try {
+            // 요청 URL 작성
+            String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&sort=sim";
+            url = new URL(apiURL);
+
+            //HttpURLConnection 으로 데이터 요청
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-Naver-Client-Id", CLIENT_ID);
+            con.setRequestProperty("X-Naver-Client-Secret", CLIENT_SECRET);
+
+
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if (responseCode == 200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 에러 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+
+
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //검색 결과 확인
+        log.info(response.toString());
+
     }
+
+} //MyPageServiceTests

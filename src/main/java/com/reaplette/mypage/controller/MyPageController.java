@@ -97,7 +97,7 @@ public class MyPageController {
     public List<GoalVO> getSearchMyGoals(@RequestParam("keyword")String keyword) {
         log.info("GET /myPage/myGoals/search - Searching My Goals");
         log.info("keyword : {}", keyword);
-        List<GoalVO> searchGoalList = myPageService.getSearchGoalList(String keyword);
+        List<GoalVO> searchGoalList = myPageService.getSearchGoalList(keyword);
         return searchGoalList;
     }
 

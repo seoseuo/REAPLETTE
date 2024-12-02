@@ -7,6 +7,7 @@ import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -171,7 +172,8 @@ public class MyPageService {
 //        private final String CLIENT_ID;  // 불변의 값
 //        private String CLIENT_SECRET;    // 변경 가능한 값
         // 네이버 도서 검색 API 서비스를 사용할 예정.
-        // keyword 는 도서명 이 들어갑니다.
+        // keyword 는 도서명 이 들어갑니다   .
+
         return null;
     }
 }
