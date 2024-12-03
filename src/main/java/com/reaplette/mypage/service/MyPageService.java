@@ -6,14 +6,18 @@ import com.reaplette.mypage.mappers.MyPageMapper;
 import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +30,12 @@ public class MyPageService {
 
     @Autowired
     private ServletContext servletContext;
+
+    @Value("${client.id}")
+    String CLIENT_ID;
+
+    @Value("${client.secret}")
+    String CLIENT_SECRET;
 
     public UserVO getUser(String id) {
         log.info("getUser....." + id);
@@ -160,7 +170,7 @@ public class MyPageService {
         userMapper.setUser(user);
     }
 
-    // 활동명 줌복검사
+    // 활동명 중복검사
     public boolean isUsernameExists(String username) {
         log.info("isUsernameExists....." + username);
         //false 면 중복
@@ -174,6 +184,76 @@ public class MyPageService {
         // 네이버 도서 검색 API 서비스를 사용할 예정.
         // keyword 는 도서명 이 들어갑니다   .
 
-        return null;
+
+        URL url;
+        StringBuffer response;
+        List<GoalVO> searchGoalList;
+        try {
+            // 요청 URL 작성
+            String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&sort=sim";
+            url = new URL(apiURL);
+
+            //HttpURLConnection 으로 데이터 요청
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-Naver-Client-Id", CLIENT_ID);
+            con.setRequestProperty("X-Naver-Client-Secret", CLIENT_SECRET);
+
+
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if (responseCode == 200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 에러 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+
+            //검색 결과 확인
+            log.info(response.toString());
+
+            String searchGoalListJson = response.toString();
+            // 필요한 정보 추출
+            // JSON 파싱
+            JSONObject jsonObject = new JSONObject(searchGoalListJson);
+            // items 배열 가져오기
+            JSONArray itemsArray = jsonObject.getJSONArray("items");
+            searchGoalList = new ArrayList<>();
+            for (int i = 0; i < itemsArray.length(); i++) {
+                JSONObject item = itemsArray.getJSONObject(i);
+                GoalVO goal = new GoalVO();
+
+                // ISBN 코드
+                goal.setBookId(item.getString("isbn"));
+                // 책 제목
+                goal.setBookTitle(item.getString("title"));
+                // 작가
+                goal.setAuthor(item.getString("author"));
+                // 이미지 URL
+                goal.setBookImageUrl(item.getString("image"));
+
+                searchGoalList.add(goal);
+            }
+
+            log.info("searchGoalList {}", searchGoalList);
+
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return searchGoalList;
     }
 }

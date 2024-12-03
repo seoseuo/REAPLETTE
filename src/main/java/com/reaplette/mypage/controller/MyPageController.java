@@ -95,10 +95,9 @@ public class MyPageController {
     @ResponseBody
     @GetMapping("/myGoals/search")
     public List<GoalVO> getSearchMyGoals(@RequestParam("keyword")String keyword) {
-        log.info("GET /myPage/myGoals/search - Searching My Goals");
+        log.info("GET /myPage/myGoals/search - Searching Goals");
         log.info("keyword : {}", keyword);
-        List<GoalVO> searchGoalList = myPageService.getSearchGoalList(keyword);
-        return searchGoalList;
+        return myPageService.getSearchGoalList(keyword);
     }
 
     @PostMapping("/myGoals/select")

@@ -1,11 +1,15 @@
 package com.reaplette.service;
 
 
+import com.reaplette.domain.GoalVO;
 import com.reaplette.domain.UserVO;
 
 
 import lombok.extern.log4j.Log4j2;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +20,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Log4j2
@@ -214,7 +220,7 @@ public class MyPageServiceTests {
 
     @Test
     public void testGetSearchGoalList() {
-        String keyword = "수학";
+        String keyword = "채식주의자";
 
         URL url;
         StringBuffer response;
@@ -245,6 +251,34 @@ public class MyPageServiceTests {
             }
             br.close();
 
+            //검색 결과 확인
+            log.info(response.toString());
+
+            String searchGoalListJson = response.toString();
+            // 필요한 정보 추출
+            // JSON 파싱
+            JSONObject jsonObject = new JSONObject(searchGoalListJson);
+            // items 배열 가져오기
+            JSONArray itemsArray = jsonObject.getJSONArray("items");
+            List<GoalVO> searchGoalList = new ArrayList<>();
+            for (int i = 0; i < itemsArray.length(); i++) {
+                JSONObject item = itemsArray.getJSONObject(i);
+                GoalVO goal = new GoalVO();
+
+                // ISBN 코드
+                goal.setBookId(item.getString("isbn"));
+                // 책 제목
+                goal.setBookTitle(item.getString("title"));
+                // 작가
+                goal.setAuthor(item.getString("author"));
+                // 이미지 URL
+                goal.setBookImageUrl(item.getString("image"));
+
+                searchGoalList.add(goal);
+            }
+
+
+            log.info("searchGoalList {}", searchGoalList);
 
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
@@ -254,10 +288,10 @@ public class MyPageServiceTests {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
 
-        //검색 결과 확인
-        log.info(response.toString());
 
     }
 

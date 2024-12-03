@@ -34,6 +34,7 @@
                 // JSON 형태로 받아서 모달 창에 다시 뿌려주는 작업
                 if (data.length > 0) {
                     // 검색 결과가 있는 경우 모달에 표시
+                    alert(data.toString);
                     showResultsInModal(data);
                 }
             })
@@ -57,12 +58,13 @@
           const itemElement = document.createElement('div');
           itemElement.classList.add('book-item');
           itemElement.innerHTML = `
-            <img src="${item.imageUrl}" alt="${item.title}" class="book-image">
-            <div class="book-info">
-              <div class="title">${item.title}</div>
-              <div class="author">${item.author}</div>
-            </div>
-            <button class="select-button">선택하기</button>
+            <img src="${item.bookImageUrl}" alt="${item.bookTitle}" class="book-image">
+  <div class="book-info">
+    <div class="title">${item.bookTitle}</div>
+    <div class="author">${item.author}</div>
+  </div>
+  <input type="hidden" name="bookId" value="${item.bookId}">
+  <button class="select-button">선택하기</button>
           `;
           // 생성된 요소를 bookList에 추가
           bookList.appendChild(itemElement);
