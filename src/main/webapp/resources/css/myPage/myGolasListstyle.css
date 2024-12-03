@@ -9,7 +9,7 @@
   gap: 0rem;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 115.3125rem;
+  height: fit-content;
   position: relative;
 }
 .icon-heroicons-outline-lock-open {
@@ -276,7 +276,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex: 1;
-  height: 108.4375rem;
+  height: fit-content;
   position: relative;
 }
 .table {
@@ -370,7 +370,7 @@
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  height: 71.625rem;
+  height: fit-content;
   position: relative;
   overflow: hidden;
 }
@@ -454,46 +454,33 @@
   position: relative;
 }
 .frame-2 {
+  
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  height: 60rem;
+  height: fit-content;
   position: relative;
 }
-.auto-layout-horizontal2 {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-space-40, 2.5rem);
-  align-items: flex-start;
-  justify-content: center;
-  flex: 1;
-  width: 61.75rem;
-  position: relative;
-}
-.auto-layout-horizontal3 {
-  padding: 0rem 3.125rem 0rem 3.125rem;
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-space-40, 2.5rem);
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  width: 61.75rem;
-  position: relative;
-}
+
+
 .auto-layout-horizontal4 {
+  width: 73rem;
+  height: fit-content;
   display: flex;
   flex-direction: row;
-  gap: var(--space-space-40, 2.5rem);
+  gap: var(--space-space-40, 5rem);
   align-items: center;
-  justify-content: flex-start;
+  justify-content: start;
   align-self: stretch;
   flex-shrink: 0;
-  width: 51.3125rem;
   position: relative;
+  overflow-x: scroll; /* 항상 가로 스크롤바 표시 */
 }
+
+
 .book-card-view {
   background: var(--color-main-100, #ffffff);
   border-radius: var(--space-space-4, 0.25rem);
@@ -503,20 +490,21 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   flex-shrink: 0;
-  width: 15.5625rem;
-  height: 23.625rem;
+  width: 15rem;
+  height: fit-content;
   position: relative;
   overflow: hidden;
 }
+
 .style-square {
   background: var(--color-main-80, #e7e8eb);
   border-radius: var(--space-space-4, 0.25rem);
   align-self: stretch;
   flex-shrink: 0;
-  height: 16rem;
+  height: 20rem;
   position: relative;
   overflow: hidden;
 }
@@ -529,12 +517,13 @@
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  height: 7.625rem;
+  height: fit-content;
   position: relative;
 }
 .div6 {
   color: var(--color-secondary-100, #283747);
   text-align: left;
+  height: fit-content;
   position: relative;
   align-self: stretch;
   display: flex;
@@ -560,12 +549,12 @@
   font-weight: 500;
 }
 .div7 {
-  background: #d9d9d9;
   flex-shrink: 0;
-  width: 4.8125rem;
+  width: 100%; /* 진행률을 반영하려면 동적으로 조정 가능 */
   height: 0.625rem;
   position: relative;
 }
+
 .book-card-view2 {
   background: var(--color-main-100, #ffffff);
   border-radius: var(--space-space-4, 0.25rem);

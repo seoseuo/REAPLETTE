@@ -41,7 +41,11 @@
           padding: 0;
         }
       </style>
+
       <title>리플렛 - 내 목표</title>
+
+
+
     </head>
 
     <body>
@@ -93,7 +97,7 @@
                 </div>
               </div>
 
-              <a href="/myPage/myGoalsAddBooks">
+              <a href="/myPage/myGoals/AddBooks">
                 <div class="type-primary-size-large-status-enable">
                   <div class="button">도서 추가</div>
                 </div>
@@ -102,71 +106,57 @@
             </div>
 
             <div class="auto-layout-horizontal">
+
               <div class="frame-2">
 
-                <div class="auto-layout-horizontal2">
-                  <div class="auto-layout-horizontal3">
-                    <div class="auto-layout-horizontal4">
-
-                      <a href="/myPage/myGoals/bookInfo">
-                        <div class="book-card-view">
-                          <div class="style-square"></div>
-                          <div class="auto-layout-vertical3">
-                            <div class="div6">
-                              <span>
-                                <span class="div-6-span">
-                                  도서 명
-                                  <br />
-                                </span>
-                                <span class="div-6-span2">저자 명</span>
-                              </span>
-                            </div>
-                            <div class="div7"></div>
-                          </div>
-                        </div>
-                      </a>
+                <!-- 한 행 시작 -->
+                <div class="auto-layout-horizontal4">
 
 
-                    </div>
-                  </div>
-                </div>
-
-                <div class="auto-layout-horizontal5">
-                  <div class="auto-layout-horizontal4">
-
-                    <a href="/myPage/myGoals/bookInfo">
+                  <c:forEach var="goal" items="${goalList}">
+                    <!-- 카드뷰 요소 시작 -->
+                    <a href="/myPage/myGoals/bookInfo?goal=${goal}">
                       <div class="book-card-view">
-                        <div class="style-square"></div>
+                        <img class="style-square" src="${goal.bookImageUrl}" />
                         <div class="auto-layout-vertical3">
                           <div class="div6">
                             <span>
                               <span class="div-6-span">
-                                도서 명
+                                ${goal.bookTitle} <!-- 도서 명 -->
                                 <br />
                               </span>
-                              <span class="div-6-span2">저자 명</span>
+                              <span class="div-6-span2">${goal.author}</span> <!-- 저자 명 -->
                             </span>
                           </div>
-                          <div class="div7"></div>
+                          <div class="div7" data-pages-read="${goal.pagesRead}" data-total-page="${goal.totalPage}">
+                          </div>
+
                         </div>
                       </div>
+                      <br><br>
                     </a>
+                    <!-- 카드뷰 요소 끝 -->
+                  </c:forEach>
 
 
 
-                  </div>
 
                 </div>
 
 
 
+
+
+
               </div>
+
             </div>
 
           </div>
         </div>
       </div>
 
+      <script src="../../../../resources/js/myPage/myGoalsList.js" defer></script>
     </body>
 
     </html>

@@ -34,7 +34,7 @@
                 // JSON 형태로 받아서 모달 창에 다시 뿌려주는 작업
                 if (data.length > 0) {
                     // 검색 결과가 있는 경우 모달에 표시
-                    alert(data.toString);
+                    
                     showResultsInModal(data);
                 }
             })
@@ -64,7 +64,8 @@
     <div class="author">${item.author}</div>
   </div>
   <input type="hidden" name="bookId" value="${item.bookId}">
-  <button class="select-button">선택하기</button>
+  <button class="select-button" onclick="selectGoal(${JSON.stringify(item).replace(/"/g, '&quot;')})">선택하기</button>
+
           `;
           // 생성된 요소를 bookList에 추가
           bookList.appendChild(itemElement);
@@ -74,4 +75,24 @@
         const modal = document.querySelector('#modal-modal');
         modal.style.display = 'flex';
       }
-      
+
+function selectGoal(item) {
+    
+    // 프론트 페이지로 item의 정보들을 넘겨주기
+    document.getElementById("bookId").value=item.bookId;
+    document.getElementById("bookTitle").value=item.bookTitle;
+    document.getElementById("author").value=item.author;
+    document.getElementById("bookImageUrl").value=item.bookImageUrl;
+
+    document.getElementById("modal-modal").style.display = "none";
+}
+
+function openModal() {
+    document.getElementById("modal-modal").style.display = "flex";
+  }
+
+  function closeModal(event) {
+    if (event.target.id === "modal-modal") {
+      document.getElementById("modal-modal").style.display = "none";
+    }
+  }

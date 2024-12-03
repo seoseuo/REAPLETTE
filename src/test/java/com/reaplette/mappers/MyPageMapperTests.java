@@ -1,5 +1,6 @@
 package com.reaplette.mappers;
 
+import com.reaplette.domain.GoalVO;
 import com.reaplette.domain.UserVO;
 import com.reaplette.mypage.mappers.MyPageMapper;
 
@@ -38,5 +39,29 @@ public class MyPageMapperTests {
     public void testIsUsernameExists() {
         String username = "테스트";
         log.info(myPageMapper.isUsernameExists(username));
+    }
+
+    @Test
+    public void testSetGoal() {
+
+        GoalVO goal = new GoalVO();
+        goal.setId("test@naver.com");
+        goal.setBookId("9791168944473");
+        goal.setBookTitle("나루토 3");
+        goal.setAuthor("마사시 키시모토");
+        goal.setPagesRead(0);
+        goal.setTotalPage(100);
+        goal.setBookImageUrl("https://shopping-phinf.pstatic.net/main_3380562/33805623708.20221019150443.jpg");
+        goal.setStartDate("2024-12-03");
+        goal.setGoalDate("2024-12-03");
+        goal.setIsDelete(0);
+
+        myPageMapper.setGoal(goal);
+    }
+
+    @Test
+    public void testGetUserGoalList() {
+        String id="test@naver.com";
+        log.info(myPageMapper.getUserGoalList(id));
     }
 }

@@ -152,7 +152,7 @@
     <div class="icon-heroicons-outline-user"></div>
   </div>
 
-  <script src="../../../resources/js/myPage/exceptionstyle.js"></script>
+  <script src="../../../resources/js/myPage/myPageInfoException.js"></script>
   <script src="../../../resources/js/myPage/myPageInfo.js"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ import java.util.List;
 @Transactional
 public class MyPageService {
 
-    private final MyPageMapper userMapper; // 자동 주입
+    private final MyPageMapper myPageMapper; // 자동 주입
 
     @Autowired
     private ServletContext servletContext;
@@ -39,7 +39,7 @@ public class MyPageService {
 
     public UserVO getUser(String id) {
         log.info("getUser....." + id);
-        return userMapper.getUser(id);
+        return myPageMapper.getUser(id);
     }
 
     // 정보 수정
@@ -167,14 +167,14 @@ public class MyPageService {
 //            예를 들어:
 //            서버 파일 시스템 경로: src/main/webapp/resources/images/myPage/users/sample.jpg
 //            웹 경로: /resources/images/myPage/users/sample.jpg
-        userMapper.setUser(user);
+        myPageMapper.setUser(user);
     }
 
     // 활동명 중복검사
     public boolean isUsernameExists(String username) {
         log.info("isUsernameExists....." + username);
         //false 면 중복
-        return userMapper.isUsernameExists(username);
+        return myPageMapper.isUsernameExists(username);
     }
 
     // 도서 검색
@@ -191,7 +191,7 @@ public class MyPageService {
         try {
             // 요청 URL 작성
             String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&sort=sim";
+            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&sort=sim&display=100";
             url = new URL(apiURL);
 
             //HttpURLConnection 으로 데이터 요청
@@ -255,5 +255,15 @@ public class MyPageService {
             throw new RuntimeException(e);
         }
         return searchGoalList;
+    }
+
+    public void setGoal(GoalVO goal) {
+        log.info("setGoal....." + goal);
+        myPageMapper.setGoal(goal);
+    }
+
+    public List<GoalVO> getUserGoalList(String id) {
+        log.info("getUserGoalList....." + id);
+        return myPageMapper.getUserGoalList(id);
     }
 }

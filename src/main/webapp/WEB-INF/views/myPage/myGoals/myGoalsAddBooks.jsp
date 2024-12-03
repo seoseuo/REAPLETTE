@@ -12,7 +12,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" href="../../../../resources/css/myPage/myGoalsAddBooks.css">
       <link rel="stylesheet" href="../../../../resources/css/myPage/myGoalsAddBooksModal.css">
-      
+      <link rel="stylesheet" href="../../../resources/css/myPage/exceptionstyle.css">
 
 
       <style>
@@ -107,6 +107,7 @@
               <div class="table">
                 <div class="form">
                   <div class="section-text">
+                    <br>
                     <div class="top">
                       <div class="secondary-headline">목표 추가</div>
                     </div>
@@ -115,15 +116,18 @@
                     </div>
                   </div>
 
-                  <form action="/myPage/myGoalsAddBooks" method="post">
+                  <form id="goalForm"action="/myPage/myGoals/register" method="post">
                     <div class="fields-group">
                       <div class="text-field">
                         <div class="label-and-field">
-                          <div class="label">도서 명</div>
-                          <div class="field">
-                            <input type="text" value="${goal.bookTitle}">
-                            <input type="hidden" value="${goal.bookId}">
+                          <div class="label">도서 명 <span class="exception-field" id="bookTitle-exception-field"></span>
                           </div>
+                          <div class="field">
+                            <input id="bookTitle" name="bookTitle" type="text" value="">
+                            <input id="bookId" name="bookId" type="hidden" value="">
+                            <input id="bookImageUrl" name="bookImageUrl" type="hidden" value="">
+                          </div>
+
                         </div>
                       </div>
 
@@ -139,9 +143,10 @@
 
                       <div class="text-field">
                         <div class="label-and-field">
-                          <div class="label">작가 명</div>
+                          <div class="label">작가 명 <span class="exception-field" id="author-exception-field"></span>
+                          </div>
                           <div class="field">
-                            <input type="text" value="${goal.author}">
+                            <input id="author" name="author" type="text" value="">
                           </div>
                         </div>
                       </div>
@@ -150,17 +155,19 @@
                     <div class="fields-group2">
                       <div class="text-field">
                         <div class="label-and-field">
-                          <div class="label">시작 날짜</div>
+                          <div class="label">시작 날짜 <span class="exception-field" id="startDate-exception-field"></span>
+                          </div>
                           <div class="field">
-                            <input type="text" value="${goal.startDate}">
+                            <input id="startDate" name="startDate" type="text" value="" placeholder="YYYY-MM-DD">
                           </div>
                         </div>
                       </div>
                       <div class="text-field">
                         <div class="label-and-field">
-                          <div class="label">목표 날짜</div>
+                          <div class="label">목표 날짜 <span class="exception-field" id="goalDate-exception-field"></span>
+                          </div>
                           <div class="field">
-                            <input type="text" value="${goal.goalDate}">
+                            <input id="goalDate" name="goalDate" type="text" value="" placeholder="YYYY-MM-DD">
                           </div>
                         </div>
                       </div>
@@ -170,20 +177,23 @@
                       <div class="fields-group2">
                         <div class="text-field">
                           <div class="label-and-field">
-                            <div class="label">총 페이지</div>
+                            <div class="label">총 페이지 <span class="exception-field"
+                                id="totalPage-exception-field"></span></div>
                             <div class="field2">
-                              <input type="text" value="${goal.totalPage}">
+                              <input id="totalPage" name="totalPage" type="text" value="" placeholder="숫자만 입력하세요">
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="buttons-group">
-                        <div class="button" style="cursor: pointer;">
-                          <div class="text-container">
-                            <input class="button-text" type="submit" value="추가하기">
+                      <label class="buttons-group" for="form-submit">
+                        <div>
+                          <div class="button" style="cursor: pointer;">
+                            <div class="text-container">
+                              <input id="form-submit" class="button-text" type="submit" value="추가하기">
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </label>
                     </div>
                   </form>
                 </div>
@@ -221,35 +231,15 @@
           <br><br>
           <div class="book-list">
             <!-- Book Item 1 -->
-            <div class="book-item">
-              <img id="searchBookImageUrl" src="https://via.placeholder.com/50" alt="Book Cover">
-              <div class="book-info">
-                <div class="title" id="searchBookTitle">책 제목 1</div>
-                <div class="author" id="searchAuthor">책 작가 1</div>
-              </div>
-              <button class="select-button">선택하기</button>
-            </div>
+
             <!-- Book Item 1 -->
           </div>
         </div>
       </div>
 
 
-
-
       <script src="../../../../resources/js/myPage/myGaolsAddBooks.js" defer></script>
-
-      <script>
-        function openModal() {
-          document.getElementById("modal-modal").style.display = "flex";
-        }
-
-        function closeModal(event) {
-          if (event.target.id === "modal-modal") {
-            document.getElementById("modal-modal").style.display = "none";
-          }
-        }
-      </script>
+      <script src="../../../../resources/js/myPage/myGaolsAddBooksException.js" defer></script>
 
     </body>
 

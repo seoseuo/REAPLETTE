@@ -31,10 +31,9 @@ public class MyPageController {
     public String getMyPageInfo(Model model,
                                 HttpSession session) {
         log.info("GET /myPage/info - Accessing MyPage Info");
+
         //테스트 볼 때만 넣는 test@naver.com
-
         UserVO user = myPageService.getUser("test@naver.com");
-
         log.info(user);
 
         model.addAttribute("user", user);
@@ -75,22 +74,20 @@ public class MyPageController {
 
 
     @GetMapping("/myGoalsList")
-    public String getMyGoalsList() {
+    public String getMyGoalsList(Model model,
+                                 HttpSession session) {
         log.info("GET /myPage/myGoalsList - Fetching My Goals List");
+        UserVO user = (UserVO)session.getAttribute("user");
+        log.info(model.addAttribute("goalList",myPageService.getUserGoalList(user.getId())));
+
         return "myPage/myGoals/myGoalsList";
     }
 
-    @GetMapping("/myGoalsAddBooks")
+    @GetMapping("/myGoals/AddBooks")
     public String getMyGoalsAddBooks() {
-        log.info("GET /myPage/myGoalsAddBooks - Accessing My Goals Add Books");
-        return "myPage/myGoals/myGoalsAddBooks";
+        return "/myPage/myGoals/myGoalsAddBooks";
     }
 
-    @GetMapping("/myGoalsAddBooksModal")
-    public String getMyGoalsAddBooksModal() {
-        log.info("GET /myPage/myGoalsAddBooksModal - Accessing My Goals Add Books Modal");
-        return "myPage/myGoals/myGoalsAddBooksModal";
-    }
 
     @ResponseBody
     @GetMapping("/myGoals/search")
@@ -100,16 +97,29 @@ public class MyPageController {
         return myPageService.getSearchGoalList(keyword);
     }
 
-    @PostMapping("/myGoals/select")
-    public String postSelectMyGoals() {
-        log.info("POST /myPage/myGoals/select - Selecting My Goals");
-        return "myPage/myGoals/myGoalsAddBooks";
-    }
+//    @PostMapping("/myGoals/select")
+//    public String postSelectMyGoals() {
+//        log.info("POST /myPage/myGoals/select - Selecting My Goals");
+//
+//        return "myPage/myGoals/myGoalsAddBooks";
+//    }
 
     @PostMapping("/myGoals/register")
-    public String postRegisterMyGoals() {
+    public String postRegisterMyGoals(GoalVO goal,
+                                      HttpSession session) {
         log.info("POST /myPage/myGoals/register - Registering My Goals");
-        return "myPage/myGoals/myGoalsList";
+
+        //현재 로그인 한 계정 가져오기
+        UserVO user = (UserVO)session.getAttribute("user");
+        log.info(user);
+
+        //현재 로그인 한 계정ID 를 goal 객체에 주입
+        goal.setId(user.getId());
+        //pagesRead 는 DB 초기 값이 0이기에 따로 설정하지 않는다.
+        log.info("register {} ",goal);
+
+        myPageService.setGoal(goal);
+        return "redirect:myPage/myGoals/myGoalsList";
     }
 
 //    @GetMapping("/myGoals/bookInfo")
