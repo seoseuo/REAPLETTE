@@ -10,6 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
       <link rel="stylesheet" href="../../../../../resources/css/myPage/myGolasListstyle.css">
+      <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
 
 
       <style>
@@ -58,9 +59,10 @@
         <!-- nav -->
 
         <div class="page-content">
+
           <div class="table">
             <div class="header">
-              <div class="auto-layout-vertical">
+              
                 <div class="div4">
                   <span>
                     <span class="div-4-span">
@@ -72,13 +74,23 @@
                     </span>
                   </span>
                 </div>
-              </div>
+              
             </div>
 
             <!-- 달력 -->
             <div class="table2">
-              <img class="image-59" src="../../../resources/images/myPage/image-590.png" />
+              
+              <div class="calendar-controls">              
+                
+                <button id="prevMonth">저번 달</button>
+                <span id="currentMonth" class="current-month"></span>
+                <button id="nextMonth">다음 달</button>
+              </div>
+
+              <div class="calendar" id="calendar"></div>
+            
             </div>
+            
           </div>
 
           <div class="table3">
@@ -112,7 +124,7 @@
                 <!-- 한 행 시작 -->
                 <div class="auto-layout-horizontal4">
                   <c:forEach var="goal" items="${goalList}">
-                    
+
                     <!-- 카드뷰 요소 시작 -->
                     <a href="/myPage/myGoals/bookInfo?goal=${goal}">
                       <div class="book-card-view">
@@ -156,6 +168,7 @@
       </div>
 
       <script src="../../../../resources/js/myPage/myGoalsList.js" defer></script>
+      <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
     </body>
 
     </html>

@@ -272,12 +272,12 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
   align-items: flex-start;
   justify-content: flex-start;
   flex: 1;
   height: fit-content;
   position: relative;
+  gap: 1.25rem;
 }
 .table {
   background: var(--default-white, #ffffff);
@@ -291,23 +291,26 @@
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  height: 39.625rem;
+  height: fit-content;
   position: relative;
   overflow: hidden;
+  padding-bottom: 5.4rem;
 }
 .header {
-  padding: 3.125rem 1.875rem 3.125rem 1.875rem;
+  
+  padding: 3.125rem 1.875rem 0rem 1.875rem;
   display: flex;
   flex-direction: column;
-  gap: var(--space-space-24, 1.5rem);
+  
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  height: 11rem;
+  height: fit-content;
   position: relative;
 }
 .auto-layout-vertical {
+  
   display: flex;
   flex-direction: column;
   gap: var(--space-space-4, 0.25rem);
@@ -318,11 +321,12 @@
   position: relative;
 }
 .div4 {
+  
   color: var(--color-secondary-100, #283747);
   text-align: left;
   position: relative;
-  width: 47.6875rem;
-  height: 6.625rem;
+  width: fit-content;
+  height: fit-content;
 }
 .div-4-span {
   color: var(--color-secondary-100, #283747);
@@ -339,25 +343,41 @@
   font-weight: 500;
 }
 .table2 {
+  
   background: var(--default-white, #ffffff);
   display: flex;
-  flex-direction: row;
-  gap: 0rem;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  height: 31.3125rem;
+  height: 34rem;
   position: relative;
   overflow: hidden;
 }
-.image-59 {
+
+/* 달력 CSS */
+.calendar {
   flex-shrink: 0;
-  width: 63.625rem;
-  height: 25.75rem;
+  width: 80rem;
+  height: 30rem;
   position: relative;
   object-fit: cover;
 }
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.calendar-controls button {
+  margin: 0 5px;
+}
+.current-month {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .table3 {
   background: var(--default-white, #ffffff);
   border-style: solid;
