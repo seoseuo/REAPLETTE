@@ -294,41 +294,28 @@
   height: fit-content;
   position: relative;
   overflow: hidden;
-  padding-bottom: 5.4rem;
+  padding-bottom: 3rem;
 }
 .header {
   
   padding: 3.125rem 1.875rem 0rem 1.875rem;
-  display: flex;
-  flex-direction: column;
+  
   
   align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
   height: fit-content;
-  position: relative;
-}
-.auto-layout-vertical {
   
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-space-4, 0.25rem);
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 .div4 {
-  
   color: var(--color-secondary-100, #283747);
   text-align: left;
   position: relative;
   width: fit-content;
   height: fit-content;
 }
-.div-4-span {
+.div-4-span {  
   color: var(--color-secondary-100, #283747);
   font-family: "PlusJakartaSans-Bold", sans-serif;
   font-size: 2.5rem;
@@ -343,7 +330,7 @@
   font-weight: 500;
 }
 .table2 {
-  
+  padding: 0rem 1rem 0rem 1rem;
   background: var(--default-white, #ffffff);
   display: flex;
   flex-direction: column;
@@ -351,21 +338,24 @@
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  height: 34rem;
+  /* height: 34.185rem; */
+  height: fit-content;
   position: relative;
   overflow: hidden;
 }
 
 /* 달력 CSS */
 .calendar {
+  
   flex-shrink: 0;
-  width: 80rem;
-  height: 30rem;
+  width: 100%;
+  height: 600px;
   position: relative;
   object-fit: cover;
 }
 
 .calendar-controls {
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -472,10 +462,11 @@
   align-self: stretch;
   flex-shrink: 0;
   position: relative;
+
+  
 }
 
-.frame-2 {
-  
+.frame-2 {  
   width: 75rem;
   flex-direction: column; /* 세로 방향 배치 */
   align-items: center; /* 자식 요소를 가로 중앙에 정렬 */
@@ -487,9 +478,7 @@
 
 
 
-.auto-layout-horizontal4 {
-
-  
+.auto-layout-horizontal4 {  
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -831,3 +820,4 @@
   position: relative;
   overflow: visible;
 }
+

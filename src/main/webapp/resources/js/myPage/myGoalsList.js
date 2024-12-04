@@ -41,33 +41,34 @@ document.addEventListener('DOMContentLoaded', () => {
 //달력 부분
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const calendar = new tui.Calendar('#calendar', {
-        defaultView: 'month',
-        useCreationPopup: false,
-        useDetailPopup: false,
-        isReadOnly: true // 읽기 전용 모드로 설정
-    });
+// document.addEventListener('DOMContentLoaded', function() {
+//     const calendar = new tui.Calendar('#calendar', {
+//         defaultView: 'month',
+//         useCreationPopup: false,
+//         useDetailPopup: false,
+//         isReadOnly: true // 읽기 전용 모드로 설정
+//     });
 
-    const currentMonthElement = document.getElementById('currentMonth');
+//     const currentMonthElement = document.getElementById('currentMonth');
 
-    function updateCurrentMonth() {
-        const viewDate = calendar.getDate();
-        const year = viewDate.getFullYear();
-        const month = viewDate.getMonth() + 1; // 월은 0부터 시작하므로 +1
-        currentMonthElement.textContent = `${year}년 ${month}월`;
-    }
+//     function updateCurrentMonth() {
+//         const viewDate = calendar.getDate();
+//         const year = viewDate.getFullYear();
+//         const month = viewDate.getMonth() + 1; // 월은 0부터 시작하므로 +1
+//         currentMonthElement.textContent = `${year}년 ${month}월`;
+//     }
 
-    document.getElementById('prevMonth').addEventListener('click', function() {
-        calendar.prev();
-        updateCurrentMonth();
-    });
+//     document.getElementById('prevMonth').addEventListener('click', function() {
+//         calendar.prev();
+//         updateCurrentMonth();
+//     });
 
-    document.getElementById('nextMonth').addEventListener('click', function() {
-        calendar.next();
-        updateCurrentMonth();
-    });
+//     document.getElementById('nextMonth').addEventListener('click', function() {
+//         calendar.next();
+//         updateCurrentMonth();
+//     });
 
-    // 초기화 시 현재 월 업데이트
-    updateCurrentMonth();
-});
+//     // 초기화 시 현재 월 업데이트
+//     updateCurrentMonth();
+// });
+
