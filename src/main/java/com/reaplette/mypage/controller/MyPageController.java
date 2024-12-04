@@ -14,9 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Log4j2
@@ -78,7 +76,9 @@ public class MyPageController {
                                  HttpSession session) {
         log.info("GET /myPage/myGoalsList - Fetching My Goals List");
         UserVO user = (UserVO)session.getAttribute("user");
-        log.info(model.addAttribute("goalList",myPageService.getUserGoalList(user.getId())));
+        List<GoalVO> goalList = myPageService.getUserGoalList(user.getId());
+        Collections.reverse(goalList);
+        log.info(model.addAttribute("goalList",goalList));
 
         return "myPage/myGoals/myGoalsList";
     }
@@ -119,7 +119,7 @@ public class MyPageController {
         log.info("register {} ",goal);
 
         myPageService.setGoal(goal);
-        return "redirect:myPage/myGoals/myGoalsList";
+        return "redirect:/myPage/myGoalsList";
     }
 
 //    @GetMapping("/myGoals/bookInfo")

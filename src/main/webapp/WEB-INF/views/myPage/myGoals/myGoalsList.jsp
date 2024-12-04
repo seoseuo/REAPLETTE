@@ -111,9 +111,8 @@
 
                 <!-- 한 행 시작 -->
                 <div class="auto-layout-horizontal4">
-
-
                   <c:forEach var="goal" items="${goalList}">
+                    
                     <!-- 카드뷰 요소 시작 -->
                     <a href="/myPage/myGoals/bookInfo?goal=${goal}">
                       <div class="book-card-view">

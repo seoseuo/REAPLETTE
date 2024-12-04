@@ -59,14 +59,13 @@
           itemElement.classList.add('book-item');
           itemElement.innerHTML = `
             <img src="${item.bookImageUrl}" alt="${item.bookTitle}" class="book-image">
-  <div class="book-info">
-    <div class="title">${item.bookTitle}</div>
-    <div class="author">${item.author}</div>
-  </div>
-  <input type="hidden" name="bookId" value="${item.bookId}">
-  <button class="select-button" onclick="selectGoal(${JSON.stringify(item).replace(/"/g, '&quot;')})">선택하기</button>
-
-          `;
+            <div class="book-info">
+              <div class="title">${item.bookTitle}</div>
+              <div class="author">${item.author}</div>
+            </div>
+            <input type="hidden" name="bookId" value="${item.bookId}">
+            <button class="select-button" onclick="selectGoal(${JSON.stringify(item).replace(/"/g, '&quot;')})">선택하기</button>
+                    `;
           // 생성된 요소를 bookList에 추가
           bookList.appendChild(itemElement);
         });
