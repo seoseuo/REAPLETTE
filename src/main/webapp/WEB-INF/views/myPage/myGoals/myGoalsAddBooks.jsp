@@ -189,6 +189,7 @@
                         <div>
                           <div class="button" style="cursor: pointer;">
                             <div class="text-container">
+                              <input type="hidden" name="isDelete" value="1">
                               <input id="form-submit" class="button-text" type="submit" value="추가하기">
                             </div>
                           </div>

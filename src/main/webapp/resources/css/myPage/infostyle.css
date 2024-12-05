@@ -16,10 +16,11 @@
   display: flex;
   flex-direction: row;
   gap: 1.9375rem;
-  align-items: center;
-  justify-content: center;
+  
+  
   flex: 1;
   position: relative;
+  height: 100vh;
 }
 .nav {
   display: flex;
@@ -279,16 +280,16 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
-  width: 67.9375rem;
+  width: 100%;
   height: 49.5625rem;
   position: relative;
   overflow: hidden;
 }
 .header {
-  padding: 3.125rem 1.875rem 3.125rem 1.875rem;
+  padding: 3.125rem 1.875rem 0rem 1.875rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-space-24, 1.5rem);

@@ -13,5 +13,5 @@ public class GoalVO {
     private String bookImageUrl; // 도서 이미지 URL
     private String startDate;  // 시작 날짜 (YY/MM/DD 형식)
     private String goalDate;   // 목표 날짜 (YY/MM/DD 형식)
-    private int isDelete;  // 삭제 여부 (기본값 1: 삭제되지 않음)
+    private int isDelete = 1;  // 삭제 여부 (기본값 1: 삭제되지 않음)
 }

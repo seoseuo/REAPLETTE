@@ -42,7 +42,7 @@
   overflow: hidden;
 }
 .header {
-  padding: 3.125rem 1.875rem 3.125rem 1.875rem;
+  padding: 3.125rem 1.875rem 0rem 1.875rem;
   display: flex;
   flex-direction: row;
   gap: var(--space-space-24, 1.5rem);

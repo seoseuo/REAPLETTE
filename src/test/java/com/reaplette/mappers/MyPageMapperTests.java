@@ -64,4 +64,11 @@ public class MyPageMapperTests {
         String id="test@naver.com";
         log.info(myPageMapper.getUserGoalList(id));
     }
+
+    @Test
+    public void testGetTranscriptionList() {
+        String id="test@naver.com";
+        String bookId="9788926770054";
+        log.info(myPageMapper.getTranscriptionList(id,bookId));
+    }
 }

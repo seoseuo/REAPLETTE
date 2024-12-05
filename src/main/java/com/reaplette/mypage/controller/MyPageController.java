@@ -1,6 +1,7 @@
 package com.reaplette.mypage.controller;
 
 import com.reaplette.domain.GoalVO;
+import com.reaplette.domain.TranscriptionVO;
 import com.reaplette.domain.UserVO;
 import com.reaplette.mypage.service.MyPageService;
 import jakarta.servlet.http.HttpSession;
@@ -122,22 +123,30 @@ public class MyPageController {
         return "redirect:/myPage/myGoalsList";
     }
 
-//    @GetMapping("/myGoals/bookInfo")
-//    public String getMyGoalBookInfo() {
-//        log.info("GET /myPage/myGoals/bookInfo - Fetching My Goal Book Info");
-//        return "myPage/myGoalBookInfo";
-//    }
+    @GetMapping("/myGoals/bookInfo")
+    public String getMyGoalBookInfo(@RequestParam("id") String id,
+                                    @RequestParam("bookId") String bookId,
+                                    Model model) {
+        log.info("GET /myPage/myGoals/bookInfo - Fetching My Goal Book Info");
 
-    @PostMapping("/myGoals/bookInfoRecord")
-    public String postBookInfoRecord() {
-        log.info("POST /myPage/myGoals/bookInfoRecord - Recording Book Info");
-        return "myPage/myGoals/bookInfo";
+        GoalVO goal = myPageService.getGoal(id,bookId);
+        log.info("goal {}",goal);
+
+        List<TranscriptionVO> transcription = myPageService.getTranscriptionList(id,bookId);
+
+        model.addAttribute("goal",goal);
+        model.addAttribute("transcription",transcription);
+
+
+        return "myPage/myGoals/myGoalsBookInfo";
     }
 
-    @GetMapping("/myGoals/bookInfo")
-    public String getMyGoalsBookInfo() {
-        log.info("GET /myPage/myGoals/bookInfo - Fetching My Goals Book Info");
-        return "myPage/myGoals/myGoalsBookInfo";
+    @PostMapping("/myGoals/bookInfoRecord")
+    public String postBookInfoRecord(GoalVO goal) {
+        log.info("POST /myPage/myGoals/bookInfoRecord - Recording Book Info");
+        log.info(goal);
+        myPageService.updateGoal(goal);
+        return "redirect:/myPage/myGoals/bookInfo?id="+goal.getId()+"&bookId="+goal.getBookId();
     }
 
     @GetMapping("/myGoals/bookInfo/delete")

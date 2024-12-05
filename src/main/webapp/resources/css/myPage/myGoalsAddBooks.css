@@ -41,7 +41,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  height: 31.1875rem;
+  height: fit-content;
   position: relative;
 }
 .section-text {

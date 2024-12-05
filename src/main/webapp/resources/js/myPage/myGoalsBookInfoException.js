@@ -1,9 +1,10 @@
 document.querySelector('#goalForm').addEventListener('submit', function(event) {
+  
+  
   // 입력 필드 값 가져오기
-  const bookTitle = document.getElementById('bookTitle').value.trim();
-  const author = document.getElementById('author').value.trim();
   const startDate = document.getElementById('startDate').value.trim();
   const goalDate = document.getElementById('goalDate').value.trim();
+  const pagesRead = document.getElementById('pagesRead').value.trim();
   const totalPage = document.getElementById('totalPage').value.trim();
 
   // 오류 메시지를 저장할 배열
@@ -43,19 +44,15 @@ document.querySelector('#goalForm').addEventListener('submit', function(event) {
     }
   }
 
-  // 책 제목 및 저자 검증
-  if (!bookTitle) {
-    document.getElementById('bookTitle-exception-field').textContent = '을 입력해주세요.';
-    errorMessages.push('을 입력해주세요.');
-  } else {
-    document.getElementById('bookTitle-exception-field').textContent = ''; // 오류 메시지 초기화
-  }
-
-  if (!author) {
-    document.getElementById('author-exception-field').textContent = '를 입력해주세요.';
+  // 읽은 페이지 검증
+  if (!pagesRead) {
+    document.getElementById('pagesRead-exception-field').textContent = '를 입력해주세요.';
     errorMessages.push('를 입력해주세요.');
+  } else if (isNaN(pagesRead)) {
+    document.getElementById('pagesRead-exception-field').textContent = '는 숫자만 입력해주세요.';
+    errorMessages.push('는 숫자만 입력해주세요.');
   } else {
-    document.getElementById('author-exception-field').textContent = ''; // 오류 메시지 초기화
+    document.getElementById('pagesRead-exception-field').textContent = ''; // 오류 메시지 초기화
   }
 
   // 총 페이지 검증
@@ -67,6 +64,14 @@ document.querySelector('#goalForm').addEventListener('submit', function(event) {
     errorMessages.push('는 숫자만 입력해주세요.');
   } else {
     document.getElementById('totalPage-exception-field').textContent = ''; // 오류 메시지 초기화
+  }
+
+  // 읽은 페이지가 총 페이지보다 큰지 확인
+  if (pagesRead && totalPage) {
+    if (Number(pagesRead) > Number(totalPage)) {
+      document.getElementById('pagesRead-exception-field').textContent = '가 총 페이지보다 더 많습니다.';
+      errorMessages.push('가 총 페이지보다 더 많을 수 없습니다.');
+    }
   }
 
   // 오류 메시지가 있으면 폼 제출 방지

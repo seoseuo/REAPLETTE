@@ -280,6 +280,7 @@
   gap: 1.25rem;
 }
 .table {
+  
   background: var(--default-white, #ffffff);
   border-style: solid;
   border-color: var(--coolgray-20, #dde1e6);
@@ -295,6 +296,7 @@
   position: relative;
   overflow: hidden;
   padding-bottom: 3rem;
+  
 }
 .header {
   

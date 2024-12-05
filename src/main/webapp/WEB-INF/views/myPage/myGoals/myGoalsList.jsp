@@ -95,7 +95,7 @@
                 <!-- Book Card Views -->
                 <div class="auto-layout-horizontal4">
                   <c:forEach var="goal" items="${goalList}">
-                    <a href="/myPage/myGoals/bookInfo?goal=${goal}">
+                    <a href="/myPage/myGoals/bookInfo?id=${goal.id}&bookId=${goal.bookId}">
                       <div class="book-card-view">
                         <img class="style-square" src="${goal.bookImageUrl}" />
                         <div class="auto-layout-vertical3">

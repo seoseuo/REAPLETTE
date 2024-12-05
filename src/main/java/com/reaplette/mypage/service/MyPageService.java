@@ -1,6 +1,7 @@
 package com.reaplette.mypage.service;
 
 import com.reaplette.domain.GoalVO;
+import com.reaplette.domain.TranscriptionVO;
 import com.reaplette.domain.UserVO;
 import com.reaplette.mypage.mappers.MyPageMapper;
 import jakarta.servlet.ServletContext;
@@ -265,5 +266,22 @@ public class MyPageService {
     public List<GoalVO> getUserGoalList(String id) {
         log.info("getUserGoalList....." + id);
         return myPageMapper.getUserGoalList(id);
+    }
+
+    public GoalVO getGoal(String id, String bookId) {
+        log.info("getGoal....." + id);
+        log.info("getGoal....." + bookId);
+        return myPageMapper.getGoal(id,bookId);
+    }
+
+    public void updateGoal(GoalVO goal) {
+        log.info("updateGoal....." + goal);
+        myPageMapper.updateGoal(goal);
+    }
+
+    public List<TranscriptionVO> getTranscriptionList(String id, String bookId) {
+        log.info("getTranscriptionList....." + id);
+        log.info("getTranscriptionList....." + bookId);
+        return myPageMapper.getTranscriptionList(id,bookId);
     }
 }
