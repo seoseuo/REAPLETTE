@@ -86,6 +86,11 @@
           width: 100%;
           /* 필요 시 너비 조정 */
         }
+
+        .row {
+          background-color: #f2f4f8;
+        }
+        
       </style>
 
       <title>리플렛 - 목표 추가</title>

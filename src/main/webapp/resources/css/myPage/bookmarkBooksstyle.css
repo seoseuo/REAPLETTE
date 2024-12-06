@@ -9,8 +9,9 @@
   gap: 0rem;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 74.1875rem;
+  height: fit-content;
   position: relative;
+  
 }
 .icon-heroicons-outline-lock-open {
   flex-shrink: 0;
@@ -36,13 +37,17 @@
   flex-direction: column;
   gap: 0rem;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  margin: 1.5rem;
+  width: 82%;
+  height: 46.78rem;
 }
 .header {
-  padding: 3.125rem 1.875rem 0rem 1.875rem;
+  
+  padding: 0rem 1.875rem 0rem 1.875rem;
   display: flex;
   flex-direction: row;
   gap: var(--space-space-24, 1.5rem);
@@ -50,7 +55,7 @@
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  height: 3.375rem;
+  height: fit-content;
   position: relative;
 }
 .auto-layout-vertical {
@@ -67,7 +72,7 @@
   text-align: left;
   position: relative;
   align-self: stretch;
-  height: 3.5rem;
+  
 }
 .div-22-span {
   color: var(--color-secondary-100, #283747);
@@ -92,80 +97,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-space-40, 2.5rem);
-  align-items: flex-start;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 63.75rem;
-  position: relative;
-}
-.frame-2 {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex: 1;
-  position: relative;
-}
-.auto-layout-horizontal2 {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-space-40, 2.5rem);
-  align-items: flex-start;
-  justify-content: center;
-  flex: 1;
-  width: 61.75rem;
-  position: relative;
-}
-.auto-layout-horizontal3 {
-  padding: 0rem 3.125rem 0rem 3.125rem;
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-space-40, 2.5rem);
   align-items: center;
   justify-content: center;
-  flex: 1;
-  width: 61.75rem;
-  position: relative;
-}
-.auto-layout-horizontal4 {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-space-40, 2.5rem);
-  align-items: center;
-  justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  width: 51.3125rem;
   position: relative;
 }
-.book-card-view {
-  background: var(--color-main-100, #ffffff);
-  border-radius: var(--space-space-4, 0.25rem);
-  border-style: solid;
-  border-color: var(--color-main-80, #e7e8eb);
-  border-width: 0.0625rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  align-items: flex-start;
-  justify-content: flex-start;
+.frame-2 {  
+  width: 75rem;
+  flex-direction: column; /* 세로 방향 배치 */
+  align-items: center; /* 자식 요소를 가로 중앙에 정렬 */
+  justify-content: center; /* 세로 방향에서 중앙 정렬 */
   flex-shrink: 0;
-  width: 15.5625rem;
-  height: 23.625rem;
+  height: fit-content;
   position: relative;
-  overflow: hidden;
 }
-.style-square {
-  background: var(--color-main-80, #e7e8eb);
-  border-radius: var(--space-space-4, 0.25rem);
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 16rem;
-  position: relative;
-  overflow: hidden;
-}
+
 .auto-layout-vertical2 {
+  border: 1px black solid;
   padding: 0.625rem 1.5rem 0.625rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -174,7 +123,7 @@
   justify-content: flex-start;
   align-self: stretch;
   flex-shrink: 0;
-  height: 7.625rem;
+  height: fit-content;
   position: relative;
 }
 .div3 {
@@ -228,17 +177,8 @@
   position: relative;
   overflow: hidden;
 }
-.auto-layout-vertical3 {
-  padding: 0.625rem 1.5rem 0.625rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-space-16, 1rem);
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
+
+
 .div5 {
   color: var(--color-secondary-100, #283747);
   text-align: left;
@@ -267,13 +207,7 @@
   line-height: 1.875rem;
   font-weight: 500;
 }
-.div6 {
-  background: #a6a6d3;
-  flex-shrink: 0;
-  width: 6.3125rem;
-  height: 0.625rem;
-  position: relative;
-}
+
 .div-5-span3 {
   color: var(--color-secondary-100, #283747);
   font-family: var(
@@ -299,6 +233,22 @@
   height: 0.625rem;
   position: relative;
 }
+
+.auto-layout-horizontal4 {  
+  border: red 1px solid;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-space-40, 5rem);
+  align-items: center;
+  justify-content: start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow-x: scroll; /* 항상 가로 스크롤바 표시 */
+}
+
+
 .auto-layout-horizontal5 {
   margin: -8.1875rem 0 0 0;
   padding: 0rem 3.125rem 0rem 3.125rem;
@@ -364,4 +314,84 @@
   font-size: 1rem;
   line-height: 1.875rem;
   font-weight: 500;
+}
+
+
+
+
+
+.book-card-view {
+  border: black 1px solid;
+  background: var(--color-main-100, #ffffff);
+  border-radius: var(--space-space-4, 0.25rem);
+  border-style: solid;
+  border-color: var(--color-main-80, #e7e8eb);
+  border-width: 0.0625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 15rem;
+  height: fit-content;
+  position: relative;
+  overflow: hidden;
+}
+
+.style-square {
+  background: var(--color-main-80, #e7e8eb);
+  border-radius: var(--space-space-4, 0.25rem);
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 20rem;
+  position: relative;
+  overflow: hidden;
+}
+.auto-layout-vertical3 {
+  
+  padding: 0.625rem 1.5rem 0.625rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-space-16, 1rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: fit-content;
+  position: relative;
+}
+.div6 {
+  color: var(--color-secondary-100, #283747);
+  text-align: left;
+  height: fit-content;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div-6-span {
+  color: var(--color-secondary-100, #283747);
+  font-family: var(
+    --heading-20-medium-font-family,
+    "PlusJakartaSans-Bold",
+    sans-serif
+  );
+  font-size: var(--heading-20-medium-font-size, 1.25rem);
+  line-height: var(--heading-20-medium-line-height, 1.875rem);
+  font-weight: var(--heading-20-medium-font-weight, 700);
+}
+.div-6-span2 {
+  color: var(--color-secondary-100, #283747);
+  font-family: "PlusJakartaSans-Medium", sans-serif;
+  font-size: 1rem;
+  line-height: 1.875rem;
+  font-weight: 500;
+}
+.div7 {
+  flex-shrink: 0;
+  width: 100%; /* 진행률을 반영하려면 동적으로 조정 가능 */
+  height: 0.625rem;
+  position: relative;
 }

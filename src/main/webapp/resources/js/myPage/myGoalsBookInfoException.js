@@ -12,6 +12,7 @@ document.querySelector('#goalForm').addEventListener('submit', function(event) {
 
   // 날짜 패턴 확인
   const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  
 
   // 시작 날짜와 목표 날짜 검증
   if (!startDate) {
@@ -78,4 +79,5 @@ document.querySelector('#goalForm').addEventListener('submit', function(event) {
   if (errorMessages.length > 0) {
     event.preventDefault();
   }
+  
 });

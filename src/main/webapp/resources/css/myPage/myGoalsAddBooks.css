@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 .page-content {
+  
   background: #f2f4f8;
   padding: 1.5rem;
   display: flex;
@@ -13,6 +14,7 @@
   flex: 1;
   position: relative;
 }
+
 .table {
   background: var(--default-white, #ffffff);
   border-style: solid;
@@ -29,6 +31,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .form {
   background: var(--default-white, #ffffff);
   border-style: solid;

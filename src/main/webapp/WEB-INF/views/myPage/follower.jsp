@@ -52,8 +52,6 @@
         </div>
 
 
-    <div class="icon-heroicons-outline-lock-open"></div>
-    <div class="icon-heroicons-outline-user"></div>
     <div class="table">
       <div class="header">
         <div class="auto-layout-vertical">

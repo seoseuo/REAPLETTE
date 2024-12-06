@@ -216,8 +216,10 @@ public class MyPageService {
             }
             br.close();
 
+
             //검색 결과 확인
             log.info(response.toString());
+
 
             String searchGoalListJson = response.toString();
             // 필요한 정보 추출
@@ -225,7 +227,9 @@ public class MyPageService {
             JSONObject jsonObject = new JSONObject(searchGoalListJson);
             // items 배열 가져오기
             JSONArray itemsArray = jsonObject.getJSONArray("items");
+
             searchGoalList = new ArrayList<>();
+
             for (int i = 0; i < itemsArray.length(); i++) {
                 JSONObject item = itemsArray.getJSONObject(i);
                 GoalVO goal = new GoalVO();

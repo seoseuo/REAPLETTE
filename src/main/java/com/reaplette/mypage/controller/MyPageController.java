@@ -132,11 +132,11 @@ public class MyPageController {
         GoalVO goal = myPageService.getGoal(id,bookId);
         log.info("goal {}",goal);
 
-        List<TranscriptionVO> transcription = myPageService.getTranscriptionList(id,bookId);
+        List<TranscriptionVO> transcriptionList = myPageService.getTranscriptionList(id,bookId);
+        log.info("transcription {}",transcriptionList);
 
         model.addAttribute("goal",goal);
-        model.addAttribute("transcription",transcription);
-
+        model.addAttribute("transcriptionList",transcriptionList);
 
         return "myPage/myGoals/myGoalsBookInfo";
     }

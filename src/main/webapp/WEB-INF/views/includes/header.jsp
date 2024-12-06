@@ -56,7 +56,7 @@
 
 
           <!-- 로그인/회원가입버튼 -->
-          <a href="/login.jsp">
+          <a href="/login/enterEmail">
             <div class="button2">
 
               <div class="text-container">

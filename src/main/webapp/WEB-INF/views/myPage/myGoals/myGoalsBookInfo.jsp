@@ -124,7 +124,8 @@
                       <div class="fields-group">
                         <div class="text-field">
                           <div class="label-and-field">
-                            <div class="label">시작 일자 <span class="exception-field" id="startDate-exception-field"></span></div>
+                            <div class="label">시작 일자 <span class="exception-field"
+                                id="startDate-exception-field"></span></div>
                             <div class="field">
                               <input type="text" id="startDate" name="startDate" value="${goal.startDate}">
                             </div>
@@ -132,7 +133,8 @@
                         </div>
                         <div class="text-field">
                           <div class="label-and-field">
-                            <div class="label">목표 일자 <span class="exception-field" id="goalDate-exception-field"></span></div>
+                            <div class="label">목표 일자 <span class="exception-field" id="goalDate-exception-field"></span>
+                            </div>
                             <div class="field">
                               <input type="text" id="goalDate" name="goalDate" value="${goal.goalDate}">
                             </div>
@@ -147,7 +149,8 @@
                       <div class="fields-group">
                         <div class="text-field">
                           <div class="label-and-field">
-                            <div class="label">총 페이지 <span class="exception-field" id="totalPage-exception-field"></span></div>
+                            <div class="label">총 페이지 <span class="exception-field"
+                                id="totalPage-exception-field"></span></div>
                             <div class="field">
                               <input type="text" id="totalPage" name="totalPage" value="${goal.totalPage}">
                             </div>
@@ -155,7 +158,8 @@
                         </div>
                         <div class="text-field">
                           <div class="label-and-field">
-                            <div class="label">읽은 페이지 <span class="exception-field" id="pagesRead-exception-field"></span></div>
+                            <div class="label">읽은 페이지 <span class="exception-field"
+                                id="pagesRead-exception-field"></span></div>
                             <div class="field">
                               <input type="text" id="pagesRead" name="pagesRead" value="${goal.pagesRead}">
                             </div>
@@ -210,46 +214,60 @@
 
                 <div class="frame-1">
 
-                  <div class="column">
 
-                    <!-- 카드 뷰 -->
-                    <div class="kanban">
-                      <div class="description-top">2024.11.14</div>
-                      <div class="description-top2">필사 문장</div>
-                      <div class="description-top3">사용자의 생각 작성란</div>
-                      <div class="bottom">
-                        <div class="icons-container">                          
-                          <a href="/myPage/myGoals/bookInfo/deleteTrans">
-                            <img class="icon-heroicons-outline-trash4"
-                              src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
-                          </a>
-                        </div>
-                      </div>
+                  
+                    
+                    <!-- 첫 번째 컬럼 -->
+                    
+                    <div class="column" id="column1">
+                      <c:forEach var="transcription" items="${transcriptionList}" varStatus="status">
+                        
+                      <c:if test="${status.index % 2 == 0}">
+                          <div class="kanban">
+                            <div class="description-top">${transcription.transcriptionDate}</div>
+                            <div class="description-top2">${transcription.transcriptionSentence}</div>
+                            <div class="description-top3">${transcription.transcriptionContent}</div>
+                            <div class="bottom">
+                              <div class="icons-container">
+                                <a
+                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}">
+                                  <img class="icon-heroicons-outline-trash4"
+                                    src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </c:if>
+                      </c:forEach>
                     </div>
-                    <!-- 카드 뷰 -->
 
+                    <!-- 두 번째 컬럼 -->
+                    
+                    <div class="column" id="column2">
+                      <c:forEach var="transcription" items="${transcriptionList}" varStatus="status">
+                        
+                      <c:if test="${status.index % 2 != 0}">
+                          <div class="kanban">
+                            <div class="description-top">${transcription.transcriptionDate}</div>
+                            <div class="description-top2">${transcription.transcriptionSentence}</div>
+                            <div class="description-top3">${transcription.transcriptionContent}</div>
+                            <div class="bottom">
+                              <div class="icons-container">
+                                <a
+                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}">
+                                  <img class="icon-heroicons-outline-trash4"
+                                    src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </c:if>
+                      </c:forEach>
+                    </div>
                   </div>
 
-                  <div class="column">
-                    <!-- 카드 뷰 -->
-                    <div class="kanban">
-                      <div class="description-top">2024.11.14</div>
-                      <div class="description-top2">필사 문장</div>
-                      <div class="description-top3">사용자의 생각 작성란</div>
-                      <div class="bottom">
-                        <div class="icons-container">
-                          
-                          <a href="/myPage/myGoals/bookInfo/deleteTrans">
-                            <img class="icon-heroicons-outline-trash4"
-                              src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- 카드 뷰 -->
-                  </div>
 
-                </div>
+                
 
               </div>
             </div>
@@ -291,7 +309,8 @@
                 <div class="label-and-field-modal">
                   <div class="label-modal">작성 날짜</div>
                   <div class="field-modal">
-                    <input type="text" name="transcriptionDate" placeholder="YYYY-MM-DD" value="${transcription.transcriptionDate}">
+                    <input type="text" name="transcriptionDate" placeholder="YYYY-MM-DD"
+                      value="${transcription.transcriptionDate}">
                   </div>
                 </div>
               </div>
@@ -299,7 +318,7 @@
               <div class="buttons-group-modal">
                 <div class="button-modal">
                   <div class="text-container-modal">
-                    
+
                     <input type="hidden" name="id" value="${goal.id}">
                     <input type="hidden" name="bookId" value="${goal.bookId}">
                     <input type="hidden" name="isDelete" value="1">
@@ -313,7 +332,7 @@
         </div>
       </div>
 
-    <script src="../../../../resources/js/myPage/myGoalsBookInfoException.js" defer></script>
+      <script src="../../../../resources/js/myPage/myGoalsBookInfoException.js" defer></script>
 
     </body>
 

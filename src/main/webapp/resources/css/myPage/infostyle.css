@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 .div {
+  
   background: var(--coolgray-10, #f2f4f8);
   display: flex;
   flex-direction: row;
