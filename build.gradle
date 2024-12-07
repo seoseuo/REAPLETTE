@@ -36,16 +36,12 @@ dependencies {
         testCompileOnly 'org.projectlombok:lombok:1.18.30'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-
-//        // Tomcat (Spring Boot 기본 제공, 필요 시 유지)
-//        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-
-
+        // Tomcat (Spring Boot 기본 제공, 필요 시 유지)
+        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
         // 테스트 의존성
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
 
         // JSP 및 JSTL
         implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
@@ -69,6 +65,12 @@ dependencies {
         // Spring JDBC
         implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
+        //JSNO 관련
+        // https://mvnrepository.com/artifact/org.json/json
+        implementation group: 'org.json', name: 'json', version: '20240303'
+
+        // Jakarta Mail API
+        implementation 'com.sun.mail:jakarta.mail:2.0.1'
 
     }
 

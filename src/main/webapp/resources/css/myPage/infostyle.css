@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 .div {
+  
   background: var(--coolgray-10, #f2f4f8);
   display: flex;
   flex-direction: row;
@@ -16,10 +17,11 @@
   display: flex;
   flex-direction: row;
   gap: 1.9375rem;
-  align-items: center;
-  justify-content: center;
+  
+  
   flex: 1;
   position: relative;
+  height: 100vh;
 }
 .nav {
   display: flex;
@@ -279,16 +281,16 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
-  width: 67.9375rem;
+  width: 100%;
   height: 49.5625rem;
   position: relative;
   overflow: hidden;
 }
 .header {
-  padding: 3.125rem 1.875rem 3.125rem 1.875rem;
+  padding: 3.125rem 1.875rem 0rem 1.875rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-space-24, 1.5rem);
@@ -357,14 +359,17 @@
   width: 13.875rem;
   height: 14.5rem;
   position: relative;
+  overflow: hidden; /* 자식 요소가 부모를 넘지 않도록 설정 */
 }
+
 .icon-jam-icons-outline-logos-user2 {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  position: relative;
-  overflow: visible;
+  width: 100%; /* 부모 요소의 너비에 맞게 설정 */
+  height: 100%; /* 부모 요소의 높이에 맞게 설정 */
+  border-radius: 6.25rem; /* 부모 요소와 동일한 둥글기 설정 */
+  object-fit: cover; /* 이미지가 부모 요소를 꽉 채우도록 설정 */
 }
+
+
 .table3 {
   background: var(--default-white, #ffffff);
   padding: 3.125rem 7.5rem 3.125rem 7.5rem;
@@ -518,4 +523,9 @@
   line-height: var(--body-16-medium-line-height, 1.625rem);
   font-weight: var(--body-16-medium-font-weight, 500);
   position: relative;
+}
+
+a {
+  color: black; /* 글씨 색을 검은색으로 설정 */
+  text-decoration: none; /* 밑줄 제거 */
 }
