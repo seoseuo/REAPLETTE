@@ -93,9 +93,7 @@ WHERE postId = 7;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="adf5fa8b-61b6-48b1-a1df-179f8ac7c0b0" object-ref="consoles/Connection" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="adf5fa8b-61b6-48b1-a1df-179f8ac7c0b0" />
