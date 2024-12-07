@@ -81,7 +81,6 @@
           <div class="content2">
             <div class="icon-container">
               <img
-
                 class="icon-jam-icons-outline-logos-smiley"
                 src="/resources/images/icon-jam-icons-outline-logos-smiley0.svg"
               />

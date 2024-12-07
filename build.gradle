@@ -36,12 +36,16 @@ dependencies {
         testCompileOnly 'org.projectlombok:lombok:1.18.30'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-        // Tomcat (Spring Boot 기본 제공, 필요 시 유지)
-        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+//        // Tomcat (Spring Boot 기본 제공, 필요 시 유지)
+//        providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+
 
         // 테스트 의존성
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 
         // JSP 및 JSTL
         implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
@@ -54,10 +58,26 @@ dependencies {
         implementation 'org.apache.logging.log4j:log4j-core:2.22.1'
         implementation 'org.apache.logging.log4j:log4j-api:2.22.1'
         testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.22.1'
+
+        //DB 관련
+        // MyBatis
+        implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+        // MySQL Connector
+        runtimeOnly 'com.mysql:mysql-connector-j'
+
+        // Spring JDBC
+        implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+
     }
 
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-parameters"
 }
