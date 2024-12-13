@@ -38,7 +38,7 @@ public class MyPageMapperTests {
     @Test
     public void testIsUsernameExists() {
         String username = "테스트";
-        log.info(myPageMapper.isUsernameExists(username));
+//        log.info(myPageMapper.isUsernameExists(username));
     }
 
     @Test

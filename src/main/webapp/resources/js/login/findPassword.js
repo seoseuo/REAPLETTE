@@ -1,8 +1,5 @@
-
     const form = document.getElementById("find-password-form");
-    
     const idInput = document.getElementById("id").value;
-
     const errorElement = document.getElementById("error-message");
     const submitButton = document.getElementById("reset-password-button");
     const popup = document.getElementById("popup-message");
@@ -47,10 +44,6 @@
             exception.style.color = "red"; // 스타일을 설정            
         });
     }
-    
-
-    
-
 
     // 팝업 표시 함수
     function showPopup(message) {

@@ -3,14 +3,14 @@
 .div * {
   box-sizing: border-box;
 }
-.div {
+.div {  
   background: var(--coolgray-10, #f2f4f8);
   display: flex;
   flex-direction: row;
   gap: 0rem;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 49.5625rem;
+  height: 100vh;
   position: relative;
 }
 .icon-heroicons-outline-lock-open {
@@ -28,6 +28,7 @@
   overflow: hidden;
 }
 .table {
+  margin: 1.5rem;
   background: var(--default-white, #ffffff);
   border-style: solid;
   border-color: var(--coolgray-20, #dde1e6);
@@ -36,23 +37,23 @@
   flex-direction: column;
   gap: 0rem;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex-shrink: 0;
-  width: 71rem;
-  height: 48.0625rem;
+  width: 81%;
+  height: 46.5625rem;
   position: relative;
   overflow: hidden;
 }
 .header {
-  padding: 3.125rem 1.875rem 3.125rem 1.875rem;
+  
+  padding: 2.125rem 3.125rem 3.125rem 1.875rem;
   display: flex;
   flex-direction: row;
-  gap: var(--space-space-24, 1.5rem);
-  align-items: center;
-  justify-content: flex-start;
-  align-self: stretch;
+  
+  
+  
   flex-shrink: 0;
-  height: 6.625rem;
+  height: fit-content;
   position: relative;
 }
 .auto-layout-vertical {
@@ -385,8 +386,10 @@
   flex-shrink: 0;
   width: 26.1875rem;
   position: relative;
+  overflow: hidden;
 }
 .user-thumb {
+  overflow: hidden;
   background: var(--coolgray-10, #f2f4f8);
   border-radius: 6.25rem;
   display: flex;
@@ -400,6 +403,7 @@
   position: relative;
 }
 .icon-jam-icons-outline-logos-user {
+  overflow: hidden;
   flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;

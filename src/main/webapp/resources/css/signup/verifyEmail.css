@@ -28,7 +28,7 @@ label {
     margin-bottom: 5px; /* 라벨과 입력칸 사이 간격 */
 }
 
-/* 로그인 박스 */
+/* 회원가입 박스 */
 .login-box {
     background-color: transparent;
     padding: 30px;
@@ -167,7 +167,7 @@ label {
 /* 타이머 스타일 */
 #timer {
     font-size: 16px;
-    color: #FF4E4E;
+    color: #DA1E28;
     margin-right: 10px;
     display: flex;
     justify-content: center;
@@ -208,7 +208,6 @@ label {
     color: #DA1E28;
     margin-top: 10px;
     text-align: left;
-    display: none; /* 처음에는 숨겨짐 */
 }
 
 /* 회원가입 버튼 스타일 */

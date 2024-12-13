@@ -26,7 +26,6 @@
                             <label for="id" class="form-label">아이디</label>
                             <input type="text" class="form-control" id="id" name="id" value="${sessionScope.id != null ? sessionScope.id : ''}" readonly>
                         </div>
-
                         <!-- 비밀번호 입력란 -->
                         <div class="mb-3">
                             <label for="password" class="form-label">비밀번호</label>
@@ -47,9 +46,7 @@
                                 비밀번호를 잊으셨나요?
                             </button>
                         </div>
-
                         <button type="submit" class="w-100" id="start-button">로그인</button>
-
                         <div class="border-top mt-3" style="border-color: #DDE1E6;"></div>
                     </form>
                 </div>
@@ -57,8 +54,7 @@
             <div class="col-2 border-start border-light"></div> <!-- 오른쪽 구분선 -->
         </div>
     </div>
-
-    <script src="/resources/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/js/bootstrap.bundle.min.js" defer></script>
     <script src="/resources/js/login/enterPassword.js" defer></script>
 </body>
 </html>

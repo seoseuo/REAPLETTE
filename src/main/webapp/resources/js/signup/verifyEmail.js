@@ -1,184 +1,240 @@
-// 이메일을 URL 파라미터로 받아오기
-window.onload = function() {
-    const email = new URLSearchParams(window.location.search).get('email');
-    if (email) {
-        document.getElementById('id').value = email;
-    }
-};
+//document.addEventListener("DOMContentLoaded", () => {
+    const verifyButton = document.getElementById("verify-button");
+//    console.log("버튼 찾기:", verifyButton);
+    const submitButton = document.getElementById("start-button");
+    const errorElement = document.getElementById("verification-error");
+    const timerElement = document.getElementById("timer");
+    const clearIcon = document.getElementById("clear-icon");
+    const verifyEmailMsg = document.getElementById("verify-email-msg"); // 인증번호 발송 메시지
 
-// 공통 fetch 함수
-async function fetchJson(url, body) {
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-    });
+    let verificationCode = document.getElementById("verificationCode").value.trim();
+    let codeField = document.getElementById("verification-code");
 
-    if (!response.ok) throw new Error();
-    return response.json();
-}
+    let timerInterval;
+    let codeCheck = false;
 
-// 타이머 설정
-let timerInterval;
-function startTimer() {
-    let timeRemaining = 300; // 5분 (300초)
+    startTimer(20); // 20초
 
-    if (timerInterval) {
-        clearInterval(timerInterval);  // 기존 타이머 초기화
-    }
+    // 타이머 시작
+    function startTimer(duration) {
+        let timeRemaining = duration;
 
-    timerInterval = setInterval(() => {
+        if (timerInterval) clearInterval(timerInterval);
+
+        // 타이머 값을 즉시 업데이트
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
-        document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        timeRemaining--;  // 시간 감소
+        timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 
-        if (timeRemaining < 0) {
-            clearInterval(timerInterval);
-            showError("인증코드 유효 시간이 초과되었습니다. 다시 요청하세요.");
-            document.getElementById('verification-section').disabled = true;
-            document.getElementById('signup-button').disabled = false;
-            toggleVerifyButton(true);
+        // 1초 간격으로 업데이트
+        timerInterval = setInterval(async () => {
+            timeRemaining--;
+
+            if (timeRemaining < 0) {
+                clearInterval(timerInterval);
+                switchToResendButton(); // 타이머 종료 후 버튼 전환
+
+                // 서버에 인증번호 만료 상태 전송
+                try {
+                    await fetch("/signup/expireVerificationCode", { method: "POST" });
+                } catch (error) {
+                    console.error("인증번호 만료 상태 전송 중 오류:", error);
+                }
+            } else {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            }
+        }, 1000);
+    }
+
+    // 확인 버튼으로 복귀
+    function switchToVerifyButton() {
+        verifyButton.textContent = "확인";
+//        verifyButton.setAttribute("data-state", "verify"); // 버튼 상태 변경
+        verifyButton.classList.remove("btn-warning");
+        verifyButton.classList.add("btn-primary");
+        verifyButton.disabled = false;
+        console.log("버튼이 '확인'으로 전환되었습니다."); // 확인 로그
+    }
+
+    // 확인 버튼을 재발송 버튼으로 변경
+    function switchToResendButton() {
+        verificationCode = ""; // 인증번호 초기화
+        codeField.value = ""; // 입력란 초기화
+        verifyButton.textContent = "재발송";
+//        verifyButton.setAttribute("data-state", "resend"); // 버튼 상태 변경
+        showError("인증번호가 유효하지 않습니다. 새 인증번호를 요청하세요.", true);
+        verifyButton.classList.remove("btn-primary");
+        verifyButton.classList.add("btn-warning");
+        verifyButton.disabled = false;
+    }
+
+    // 인증번호 확인 버튼 클릭 시
+    function verifyCodeCheck() {
+        console.log("verifyCodeCheck 함수 호출됨");
+        const code = codeField.value.trim();
+        console.log("verifyCodeCheck 함수 호출됨");
+
+        if (verifyButton.textContent === "재발송") {
+            location.reload(true);
+            return;
         }
-    }, 1000);
-}
 
-// 인증코드 확인 버튼 동작
-document.getElementById('verify-button').addEventListener('click', async () => {
-    const button = document.getElementById('verify-button');
-    const code = document.getElementById('verification-code').value.trim();
+        if (!code) {
+            showError("인증번호를 입력하지 않았습니다.", true);
+            return;
+        }
 
-    // 인증코드가 비어 있으면 예외 메시지 표시
-    if (!code) {
-        showError("인증코드를 입력하지 않았습니다.", true);
-        return;
+        if(verificationCode == code) {
+            codeCheck = true;
+            showError("인증번호를 확인했습니다. 회원가입 버튼을 누르세요.", false);
+        } else {
+            showError("인증번호가 일치하지 않습니다. 다시 입력하세요.", true);
+        }
     }
 
-    // 인증코드가 숫자가 아닌 값일 경우 예외 처리
-    if (!/^\d+$/.test(code)) {
-        showError("인증코드는 숫자만 입력 가능합니다.", true);
-        return;
+//    // 재발송 버튼 클릭 시 새로운 인증번호 요청
+//    function verifyButtonClickHandler() {
+//        console.log("버튼 클릭 이벤트 발생");
+//        const currentState = verifyButton.getAttribute("data-state");
+//        console.log("현재 버튼 상태: ", currentState);
+//
+//        if (currentState === "resend") {
+//            handleResendRequest();
+//        } else if (currentState === "verify") {
+//            verifyCodeCheck();
+//        }
+//    }
+
+    verifyButton.addEventListener("click", async () => {
+            const code = codeField.value.trim();
+//            const currentState = verifyButton.getAttribute("data-state");
+        if (verifyButton.textContent === "재발송") {
+        console.log("재발송 버튼 클릭됨"); // 디버깅용
+
+            try {
+                const response = await fetch("/signup/resendVerification", { method: "POST" });
+                console.log("서버 응답 수신 완료:", response.status); // 디버깅용
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log("서버 응답 내용:", result); // 응답 내용 확인
+                    verificationCode = result.newCode; // 새 인증번호 갱신
+                    console.log("새 인증번호:", verificationCode); // 디버깅용
+                    showError("새 인증번호가 발송되었습니다. 이메일을 확인하세요.", false);
+                    switchToVerifyButton(); // 버튼을 "확인" 상태로 변경
+                } else {
+                    console.error("오류 메시지:", result.message); // 디버깅용
+                    showError("재발송 중 오류가 발생했습니다.", true);
+                }
+            } catch (error) {
+                console.error("재발송 요청 중 오류 발생:", error); // 디버깅용
+                showError("인증번호 재발송 중 문제가 발생했습니다.", true);
+            }
+        } else {
+            verifyCodeCheck();
+        }
+    });
+
+//    verifyButton.addEventListener("click", async () => {
+////        console.log("버튼 클릭 이벤트 동작 확인");
+//        if (verifyButton.textContent === "재발송") {
+//            try {
+////              console.log("재발송 버튼으로 서버에 요청");
+//                const email = sessionStorage.getItem("id");
+//
+//                const response = await fetch("/signup/resendVerification", {
+//                    method: "POST",
+//                    headers: { "Content-Type": 'application/json' },
+//                    body: JSON.stringify({ id: email })
+//                });
+//
+//                if (response.ok) {
+//                    const result = await response.json(); // JSON 응답 파싱
+//                    verificationCode = result.newCode; // 새 인증번호 갱신
+//                    showError(message, false);
+//                    switchToVerifyButton(); // 버튼을 "확인" 상태로 변경
+//                } else {
+////                console.log("서버 응답 상태 코드:", response.status);
+//                    const message = await response.text();
+//                    showError(message, true);
+////                console.log("서버 응답 메시지:", message);
+//                }
+//            } catch (error) {
+//                console.error("재발송 요청 중 오류 발생:", error);
+//                showError("인증번호 재발송 중 문제가 발생했습니다.", true);
+//            }
+//        }
+//    });
+
+    codeField.addEventListener("keydown", (event) => {
+        if (
+            !(event.key >= "0" && event.key <= "9") &&
+            !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(event.key)
+        ) {
+            event.preventDefault(); // 숫자와 제어 키 외 입력 차단
+        }
+    });
+
+    // 오류 메시지 표시 함수
+    function showError(message, isError) {
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+        errorElement.style.color = isError ? "#DA1E28" : "#0F62FE";
+        setTimeout(clearError, 3000); // 3초 후 메시지 제거
+
     }
 
-    if (button.textContent === "재발송") {
-        // 이메일 재발송 버튼이 클릭된 경우
-        const email = document.getElementById('id').value.trim();
+    function clearError() {
+        errorElement.textContent = ''; // 텍스트 초기화
+        errorElement.style.display = "none";
+    }
+
+    // 예외 처리 함수
+    function handleException(message, error) {
+    //    console.error(message, error);
+        showError(`${message}: ${error.message}`, true);
+    }
+
+    // 입력란에 값이 있을 때 클리어 아이콘 보이기
+    codeField.addEventListener("input", () => {
+        clearIcon.style.display = codeField.value ? "block" : "none";
+    });
+
+    // 클리어 아이콘 클릭 시 입력란 초기화
+    clearIcon.addEventListener("click", () => {
+        codeField.value = "";
+        clearIcon.style.display = "none";
         clearError();
+    });
 
-        try {
-            // 이메일 발송 API 호출
-            const data = await fetchJson('/check-email', { email });
+    // 입력란에 값이 있을 때 클리어 아이콘 보이기
+    codeField.addEventListener("input", () => {
+        clearIcon.style.display = codeField.value ? "block" : "none";
+    });
 
-            if (data.canSendVerification) {
-                startTimer();  // 타이머 시작
-                toggleVerifyButton(false); // 확인 버튼으로 되돌리기
-                document.getElementById('verify-email-msg').style.display = 'block';
-            } else {
-                showError("이메일 발송에 실패했습니다. 다시 시도해주세요.");
-            }
-        } catch (error) {
-            showError("이메일 발송 중 문제가 발생했습니다. 다시 시도하세요.");
+    // 인증번호 입력란에 포커스가 가면 클리어 아이콘 보이기
+    codeField.addEventListener('focus', () => {
+    //    const clearIcon = document.getElementById('clear-icon');
+        clearIcon.style.display = 'block'; // 포커스 시 클리어 아이콘 보이기
+    });
+
+    // 인증번호 입력란에 포커스가 벗어나면 클리어 아이콘 숨기기
+    codeField.addEventListener('blur', () => {
+    //    const clearIcon = document.getElementById('clear-icon');
+        if (codeField.value) {
+            clearIcon.style.display = 'none'; // 입력란이 비어있으면 클리어 아이콘 숨기기
         }
-    } else {
-        // 기존 동작: 인증코드 확인
-        try {
-            const data = await fetchJson('/verify-code', { code });
+    });
 
-            if (data.isValid) {
-                // 인증코드가 유효하면 회원가입 버튼 활성화
-                document.getElementById('signup-button').disabled = false;
-                showError("인증코드가 유효합니다.");
-                toggleVerifyButton(true); // 확인 버튼에서 회원가입 버튼으로 변경
-            } else {
-                showError("인증코드가 유효하지 않습니다. 다시 입력하세요.");
-            }
-        } catch {
-            showError("인증코드 확인 중 문제가 발생했습니다. 다시 시도하세요.");
+    document.getElementById("verify-form").addEventListener("submit", function(event) {
+        if (!codeCheck) {
+            showError("인증번호를 확인하지 않았습니다.", true);
+            event.preventDefault(); // 폼 제출 방지
+            return;
+        } else {
+            console.log("폼 제출 성공: codeCheck =", codeCheck);
         }
-    }
-});
-
-// 확인 버튼을 이메일 재발송 버튼으로 변경하는 함수
-function toggleVerifyButton(isResend) {
-    const verifyButton = document.getElementById('verify-button');
-
-    if (isResend) {
-        verifyButton.textContent = "재발송";  // 버튼 텍스트를 재발송으로 변경
-    } else {
-        verifyButton.textContent = "확인";  // 버튼 텍스트를 확인으로 변경
-    }
-}
-
-// 회원가입 버튼 클릭 시 처리
-document.getElementById('signup-button').addEventListener('click', async (event) => {
-    const verificationCode = document.getElementById('verification-code').value.trim();
-    
-    // 인증번호가 비어있으면 오류 메시지 표시
-    if (!verificationCode) {
-        showError("인증번호 확인을 먼저 해주세요.");
-        return; // 인증번호가 없으면 함수 종료
-    }
-
-    // 인증번호가 유효한지 확인
-    const isValid = await checkVerificationCode(verificationCode);  // 유효성 검증 함수 호출
-    if (!isValid) {
-        showError("인증번호 확인이 완료되지 않았습니다.");
-        return;  // 인증번호가 유효하지 않으면 회원가입 진행 안함
-    }
-
-    // 인증번호가 유효하면 회원가입 처리
-    try {
-        console.log("회원가입 진행 중...");
-        // 실제 회원가입 처리 (예: form.submit() 또는 API 호출)
-    } catch (error) {
-        showError("회원가입 중 문제가 발생했습니다.");
-    }
-});
-
-// 공통 오류 메시지 표시 함수
-function showError(message, isVerificationError = false) {
-    const errorElement = isVerificationError
-        ? document.getElementById('verification-error')  // 인증 관련 오류 메시지
-        : document.getElementById('verification-msg');   // 일반 오류 메시지
-
-    errorElement.textContent = message;
-    errorElement.style.display = 'block';  // 오류 메시지 표시
-}
-
-// 인증번호 유효성 검증 함수 (예시)
-async function checkVerificationCode(code) {
-    try {
-        const response = await fetch('/verify-code', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code })
-        });
-        const data = await response.json();
-        return data.isValid;  // 인증번호 유효성 반환
-    } catch (error) {
-        showError("인증번호 확인 중 문제가 발생했습니다. 다시 시도하세요.");
-        return false;
-    }
-}
-
-// 인증번호 입력칸 초기화 버튼 동작
-document.getElementById('clear-icon').addEventListener('click', () => {
-    const verificationCodeInput = document.getElementById('verification-code');
-    verificationCodeInput.value = ''; // 입력란을 비움
-    verificationCodeInput.focus(); // 다시 포커스
-    document.getElementById('clear-icon').style.display = 'none'; // 클리어 아이콘 숨기기
-});
-
-// 인증번호 입력란에 포커스가 가면 클리어 아이콘 보이기
-document.getElementById('verification-code').addEventListener('focus', () => {
-    const clearIcon = document.getElementById('clear-icon');
-    clearIcon.style.display = 'block'; // 포커스 시 클리어 아이콘 보이기
-});
-
-// 인증번호 입력란에 포커스가 벗어나면 클리어 아이콘 숨기기
-document.getElementById('verification-code').addEventListener('blur', () => {
-    const clearIcon = document.getElementById('clear-icon');
-    if (document.getElementById('verification-code').value === '') {
-        clearIcon.style.display = 'none'; // 입력란이 비어있으면 클리어 아이콘 숨기기
-    }
-});
+    });
+//});

@@ -36,41 +36,51 @@
       <div class="tab_menu">
         <ul class="d-flex justify-content-center gap-4 fw-bold">
           <li class="active"><a class="tm_a py-2" href="#">Overview</a></li>
-          <li><a class="tm_a py-2" href="/search/total/book">Book</a></li>
-          <li><a class="tm_a py-2" href="/search/total/author">Author</a></li>
-          <li><a class="tm_a py-2" href="/search/total/post">Post</a></li>
-          <li><a class="tm_a py-2" href="/search/total/user">User</a></li>
+          <li><a class="tm_a py-2" href="/search/total/book?keyword=${param.keyword}&page=1">Book</a></li>
+          <%--<li><a class="tm_a py-2" href="/search/total/author?keyword=${param.keyword}">Author</a></li>--%>
+          <li><a class="tm_a py-2" href="/search/total/post?keyword=${param.keyword}">Post</a></li>
+          <li><a class="tm_a py-2" href="/search/total/user?keyword=${param.keyword}">User</a></li>
         </ul>
       </div>
-      <!-- /tab_menu -->
+      <!-- /tab_menu-->
 
       <div class="container py-5 px-0 overflow-hidden">
-        <section class="overview totalSearch py-5">
+        <section class="overview totalSearch py-5_py5">
           <!-- Books -->
           <div class="ts-book border border-dark-subtle mb-4 px-3 py-2 rounded-4">
-            <h4 class="fw-bold"><a href="<c:url value='/search/total/book' />" style="color: var(--color-black);">Book</a></h4>
+            <h4 class="fw-bold"><a href="/search/total/book?keyword=${param.keyword}&page=1" style="color: var(--color-black);"> 책 </a></h4>
             <ul>
               <c:if test="${empty bookList}">
                   <li>
-                    <p>검색 결과가 없습니다.</p>
+                    <p>'${keyword}' 검색 결과가 없습니다.</p>
                   </li>
               </c:if>
               <c:forEach var="book" items="${bookList}">
-                <li>
-                  <p>제목: ${book.title}</p>
-                  <p>저자: ${book.author}</p>
-                </li>
+                <li class="row py-5_book">
+                <%-- <div class="col-1 fw-bold book_num">${book.index}.</div--%>
+                   <%-- <div class="col-1 fw-bold book_num">${book.num}.</div>--%>
+                    <div class="col-2 book_img">
+                        <img src="${book.image}" alt="${book.title}의 표지" />
+                    </div>
+                    <div class="col">
+                        <h3 class="fw-bold">
+                            <a href="/search/total/book/detail?isbn=${book.isbn}&keyword=${param.keyword}" class="book_title" style="color: var(--color-blue)">${book.title}</a>
+                        </h3>
+                        <p class="book_info"> 저자 : ${book.author}
+                       <%-- <p class="book_desc" class="book_desc">${book.description}</p> --%>
+                    </div>
+                    </li>
               </c:forEach>
             </ul>
           </div>
 
           <!-- Authors -->
-          <div class="ts-author border border-dark-subtle mb-4 px-3 py-2 rounded-4">
-            <h4 class="fw-bold"><a href="<c:url value='/search/total/author' />" style="color: var(--color-black);">Author</a></h4>
+          <%--<div class="ts-author border border-dark-subtle mb-4 px-3 py-2 rounded-4">
+            <h4 class="fw-bold"><a href="<c:url value='/search/total/author' />" style="color: var(--color-black);">  작가 </a></h4>
             <ul>
              <c:if test="${empty authorList}">
                 <li>
-                    <p>검색 결과가 없습니다.</p>
+                    <p>'${keyword}' 검색 결과가 없습니다.</p>
                 </li>
               </c:if>
               <c:forEach var="author" items="${authorList}">
@@ -80,46 +90,62 @@
                 </li>
               </c:forEach>
             </ul>
-          </div>
+          </div> --%>
 
           <!-- Posts -->
           <div class="ts-post border border-dark-subtle mb-4 px-3 py-2 rounded-4">
-            <h4 class="fw-bold"><a href="<c:url value='/search/total/post' />" style="color: var(--color-black);">Post</a></h4>
+            <h4 class="fw-bold"><a href="/search/total/post?keyword=${param.keyword}" style="color: var(--color-black);"> 게시글 </a></h4>
             <ul>
-            <c:if test="${empty postList}">
+            <c:if test="${empty boardList}">
                 <li>
-                    <p>검색 결과가 없습니다.</p>
+                    <p> '${keyword}' 검색 결과가 없습니다.</p>
                 </li>
             </c:if>
-            <c:forEach var="post" items="${postList}">
-                <li>
-                  <p>제목: ${post.title}</p>
-                  <p>내용: ${post.content}</p>
-                </li>
+            <c:forEach var="board" items="${boardList}">
+                <a href="/community/viewPost/${board.postId}">
+                    <div class="col_colpost">
+                      <div class="d-flex gap-4 align-items-center mb-1_mb1">
+                          <img src="${board.profileImagePath}" alt="프로필 이미지" class="profile-image" />
+                          <p class="mb-0 me-5_username">${board.username}</p>
+                          <p class="mb-0">${board.date}</p>
+                      </div>
+
+                      <p class="fw-bold fs-5 px-4 mb-2 rounded-4" style="background: var(--color-f4f4f4)">
+                          ${board.title}
+                      </p>
+                      <p class="fw-bold fs-5 px-4 py-1 mb-0 rounded-4 cont_desc" style="background: var(--color-f4f4f4)">
+                          ${board.content}
+                      </p>
+                    </div>
+                </a>
             </c:forEach>
             </ul>
           </div>
 
           <!-- Users -->
           <div class="ts-users border border-dark-subtle mb-4 px-3 py-2 rounded-4">
-            <h4 class="fw-bold"><a href="<c:url value='/search/total/user' />" style="color: var(--color-black);">User</a></h4>
-            <ul>
+            <h4 class="fw-bold"><a href="/search/total/user?keyword=${param.keyword}" style="color: var(--color-black);"> 사용자 </a></h4>
+            <ul class="mainUser">
             <c:if test="${empty userList}">
                 <li>
-                    <p>검색 결과가 없습니다.</p>
+                    <p>'${keyword}' 검색 결과가 없습니다.</p>
                 </li>
             </c:if>
             <c:forEach var="user" items="${userList}">
-                <li>
-                  <p>이름: ${user.username}</p>
-                  <p>가입일: ${user.joinDate}</p>
-                </li>
+            <li class="row align-items-center mb-5_mb5" style="margin-bottom: 0.5rem;">
+              <!-- 프로필 사진 -->
+              <div class="col-2 ul_icon col2">
+                  <img src="${user.profileImagePath}"  class="mainProfileImage" />
+              </div>
+              <!-- 활동자명 -->
+              <p class="col ul_title mb-0 fs-5_fs5">${user.username}</p>
+              </li>
             </c:forEach>
             </ul>
           </div>
 
           <!-- pagination -->
-          <div class="mt-5">
+         <%-- <div class="mt-5">
             <ul class="pagination d-flex justify-content-center gap-4 fw-bold">
                 <!-- Previous 버튼 -->
                 <li class="${currentPage == 1 ? 'disabled' : ''}">
@@ -138,7 +164,7 @@
                     <a class="px-2 py-1" href="?page=${currentPage + 1}" ${currentPage == totalPages ? 'onclick="return false;"' : ''}>Next</a>
                 </li>
             </ul>
-          </div>
+          </div> --%>
         </section>
         <!-- /overview -->
       </div>

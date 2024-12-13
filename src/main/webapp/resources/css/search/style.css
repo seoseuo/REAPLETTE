@@ -58,6 +58,26 @@ img {
   max-width: 100%;
   height: auto;
 }
+.profile-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+.post-image {
+    max-width: 100%;
+    height: auto;
+    float: right;
+    position: relative;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    margin: 12px 0 0 16px;
+    border-radius: 12px;
+    text-align: center;
+}
 
 button {
   border: none;
@@ -73,16 +93,6 @@ button {
   color: var(--color-black);
 }
 
-/*
-*
-*
-*
-*
-*
-*
-*
-*
-*/
 
 /* start tab_menu style */
 
@@ -96,17 +106,6 @@ button {
 }
 
 /* end tab_menu style */
-
-/*
-*
-*
-*
-*
-*
-*
-*
-*
-*/
 
 /* start container style */
 
@@ -141,18 +140,17 @@ button {
   border: 1px solid var(--color-0f62fe);
 }
 
-/* end container style */
+.cont_desc {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
 
-/*
-*
-*
-*
-*
-*
-*
-*
-*
-*/
+}
+
+/* end container style */
 
 /* start pagination */
 
@@ -185,16 +183,6 @@ button {
 
 /* end pagination */
 
-/*
-*
-*
-*
-*
-*
-*
-*
-*
-*/
 
 /* 책 상세페이지 review 별점 체크 */
 
@@ -249,6 +237,21 @@ button {
 .heart-icon.active {
   color: var(--color-0f62fe); /* 클릭 상태: 파란색 꽉 찬 하트 */
 }
+/* 하트 기본 상태 (비어있는 상태) */
+.bookFav {
+  color: var(--color-blue);
+  background: var(--color-white);
+  cursor: pointer;
+  margin-left: 150px;
+  font-size: 22px;
+}
+
+/* 찜 클릭 후 꽉 찬 파란색 상태 */
+.bookFav.active {
+  color: white;
+  background: var(--color-0f62fe);
+  content: "찜♥"; /* 하트 모양 변경 */
+}
 
 /* 작가 프로필 섹션 */
 .author_profile {
@@ -289,4 +292,132 @@ button {
 .profile-info ul li {
   margin-bottom: 5px;
   font-size: 14px;
+}
+.py-5_py5{
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    margin-top: -40px;
+}
+
+.search {
+    padding-top: 3rem !important;
+    padding-bottom: 1rem !important;
+    margin-top: -30px;
+}
+.list {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+}
+.py-5 {
+    padding-top: 2rem !important;
+    padding-bottom :0 !important;
+}
+
+.mainProfileImage {
+    border-radius: 100% !important;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+.col2 {
+    padding-left: 20px !important;
+}
+
+.mainUser{
+    padding-top: 10px;
+}
+.fs-5_fs5{
+    font-size: 1.3rem !important;
+    margin-left: -90px !important;
+}
+.mb5{
+    margin-bottom: 0.5rem !important;
+}
+.mb-1_mb1{
+    padding-left: 8px !important;
+    padding-top: 10px;
+}
+.col_post{
+    padding-top: 10px !important;
+}
+.me-5_username{
+    margin-left: -15px;
+}
+/*.mb-0 {
+    margin-left: -15px;
+}*/
+
+.rounded-4{
+margin: 15px;
+
+}
+
+.mb-5_mb5{
+    margin-bottom: 1rem !important;
+}
+
+.userImage{
+border-radius: 50%;
+width: 100px;
+height: 100px !important;
+max-width: 100%;
+height: auto;
+object-fit: cover;
+}
+
+.book_desc {
+  font-size: 15px !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+ }
+ .py-5_book{
+ padding-top: 3rem !important;
+ padding-bottom: 0.5rem !important;
+}
+
+.mb-3_title {
+    /* margin-top: 50px; */
+    padding-top: 50px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+    position: relative;
+    top: -180px;
+}
+.fs-5_author{
+margin-top: 0px;
+    padding-top: 0px;
+    position: relative;
+    top: -150px;
+    font-size: 20px;
+}
+align-items-center_review{
+margin-top: 0px;
+    padding-top: 0px;
+    position: relative;
+    top: -120px;
+    font-size: 20px;
+}
+.reviewDate{
+    position: relative;
+    left: 50px;
+}
+img.delete{
+    position: relative;
+    right: 20px;
+    width: 25px;
+}
+.text-center_star{
+    position: relative;
+    left: 25px;
+}
+.m-0_content{
+margin: 1 !important;
 }

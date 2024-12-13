@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('login-form');
-    const passwordField = document.getElementById('password');
+    const pwField = document.getElementById('password');
     const errorElement = document.getElementById('password-error');
-    const emailField = document.getElementById('id');
+    const idField = document.getElementById('id');
     const forgotPasswordButton = document.getElementById('forgot-button');
     const submitButton = document.getElementById('start-button');
 
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'Enter') {
             event.preventDefault(); // 기본 동작 방지
             if (document.activeElement !== forgotPasswordButton) {
-                // 현재 활성 요소가 "forgotPasswordButton"이 아니라면 submitButton 클릭
                 submitButton.click();
             }
         }
@@ -21,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // 기본 제출 동작 방지
 
-        const id = emailField.value; // readonly 이메일 값 가져오기
-        const pw = passwordField.value; // 비밀번호 값 가져오기
+        const id = idField.value; // readonly 이메일 값 가져오기
+        const pw = pwField.value; // 비밀번호 값 가져오기
 
         if (!validatePassword()) return; // 비밀번호 유효성 검사 실패 시 중단
 
@@ -31,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 비밀번호 유효성 검사
     function validatePassword() {
-        const pw = passwordField.value.trim();
+        pwField.value = pwField.value.replace(/\s/g, ''); // 공백 제거
+
+        const pw = pwField.value.trim();
         if (!pw) {
             showError('비밀번호를 입력하지 않았습니다.');
             return false;
@@ -41,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 비밀번호 입력 시 유효성 검사
-    passwordField.addEventListener('input', validatePassword);
+    pwField.addEventListener('input', validatePassword);
 
     // 비밀번호 찾기 버튼 클릭 시 페이지 이동 처리
     forgotPasswordButton.addEventListener('click', (event) => {
         event.preventDefault(); // 기본 폼 동작 방지
-        window.location.href = '/login/findPassword'; // 비밀번호 찾기 페이지로 이동
+        window.location.href = "/login/findPassword"; // 비밀번호 찾기 페이지로 이동
     });
 
 

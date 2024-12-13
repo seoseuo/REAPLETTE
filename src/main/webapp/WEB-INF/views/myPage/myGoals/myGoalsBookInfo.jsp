@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="../../../../../resources/css/myPage/myGoalsBookInfostyle.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" href="../../../../../resources/css/myPage/MyGoalsWriteTranscriptionstyle.css">
+      <link rel="stylesheet" href="../../../../resources/css/myPage/exceptionstyle.css">
 
       <style>
         a,
@@ -179,7 +180,8 @@
                         <div class="buttons-group" style="margin-left:15px;">
                           <div class="button">
                             <div class="text-container">
-                              <button class="button-text">목표 삭제</button>
+                              <a href="/myPage/myGoals/bookInfo/delete?id=${goal.id}&bookId=${goal.bookId}"
+                                class="button-text">목표 삭제</a>
                             </div>
                           </div>
                         </div>
@@ -212,17 +214,12 @@
                   </a>
                 </div>
 
-                <div class="frame-1">
-
-
-                  
-                    
+                <c:if test="${not empty transcriptionList}">
+                  <div class="frame-1">
                     <!-- 첫 번째 컬럼 -->
-                    
                     <div class="column" id="column1">
                       <c:forEach var="transcription" items="${transcriptionList}" varStatus="status">
-                        
-                      <c:if test="${status.index % 2 == 0}">
+                        <c:if test="${status.index % 2 == 0}">
                           <div class="kanban">
                             <div class="description-top">${transcription.transcriptionDate}</div>
                             <div class="description-top2">${transcription.transcriptionSentence}</div>
@@ -230,7 +227,7 @@
                             <div class="bottom">
                               <div class="icons-container">
                                 <a
-                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}">
+                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}&id=${goal.id}&bookId=${goal.bookId}">
                                   <img class="icon-heroicons-outline-trash4"
                                     src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
                                 </a>
@@ -242,11 +239,9 @@
                     </div>
 
                     <!-- 두 번째 컬럼 -->
-                    
                     <div class="column" id="column2">
                       <c:forEach var="transcription" items="${transcriptionList}" varStatus="status">
-                        
-                      <c:if test="${status.index % 2 != 0}">
+                        <c:if test="${status.index % 2 != 0}">
                           <div class="kanban">
                             <div class="description-top">${transcription.transcriptionDate}</div>
                             <div class="description-top2">${transcription.transcriptionSentence}</div>
@@ -254,7 +249,7 @@
                             <div class="bottom">
                               <div class="icons-container">
                                 <a
-                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}">
+                                  href="/myPage/myGoals/bookInfo/deleteTrans?transcriptionId=${transcription.transcriptionId}&id=${goal.id}&bookId=${goal.bookId}">
                                   <img class="icon-heroicons-outline-trash4"
                                     src="../../../../resources/images/myPage/icon-heroicons-outline-trash3.svg" />
                                 </a>
@@ -265,9 +260,15 @@
                       </c:forEach>
                     </div>
                   </div>
+                </c:if>
+
+                <c:if test="${empty transcriptionList}">
+                  <p>필사 노트가 없습니다! <br> 지금 바로 추가해보세요!</p>
+                </c:if>
 
 
-                
+
+
 
               </div>
             </div>
@@ -288,51 +289,62 @@
                 책을 읽고 인상 깊은 문장과 당신의 생각을 담아보세요.
               </div>
             </div>
-            <div class="form-5-fields-checkbox-button-modal">
-              <div class="text-field-modal">
-                <div class="label-and-field-modal">
-                  <div class="label-modal">필사 문장</div>
-                  <div class="field-modal">
-                    <input type="text" name="transcriptionSentence" value="${transcription.transcriptionSentence}">
-                  </div>
-                </div>
-              </div>
-              <div class="text-field-modal">
-                <div class="label-and-field-modal">
-                  <div class="label-modal">나의 생각</div>
-                  <div class="field-modal">
-                    <input type="text" name="transcriptionContent" value="${transcription.transcriptionContent}">
-                  </div>
-                </div>
-              </div>
-              <div class="text-field-modal">
-                <div class="label-and-field-modal">
-                  <div class="label-modal">작성 날짜</div>
-                  <div class="field-modal">
-                    <input type="text" name="transcriptionDate" placeholder="YYYY-MM-DD"
-                      value="${transcription.transcriptionDate}">
-                  </div>
-                </div>
-              </div>
 
-              <div class="buttons-group-modal">
-                <div class="button-modal">
-                  <div class="text-container-modal">
+            <form id="transcription-from" method="post" action="/myPage/myGoals/bookInfo/postTrans">
+              <div class="form-5-fields-checkbox-button-modal">
+                <div class="text-field-modal">
+                  <div class="label-and-field-modal">
+                    <div class="label-modal">필사 문장 <span class="exception-field"
+                        id="transcriptionSentence-exception-field"></span></div>
+                    <div class="field-modal">
+                      <input type="text" id="transcriptionSentence" name="transcriptionSentence" value="">
+                    </div>
 
-                    <input type="hidden" name="id" value="${goal.id}">
-                    <input type="hidden" name="bookId" value="${goal.bookId}">
-                    <input type="hidden" name="isDelete" value="1">
+                  </div>
+                </div>
+                <div class="text-field-modal">
+                  <div class="label-and-field-modal">
+                    <div class="label-modal">나의 생각 <span class="exception-field"
+                        id="transcriptionContent-exception-field"></span></div>
+                    <div class="field-modal">
+                      <input type="text" id="transcriptionContent" name="transcriptionContent" value="">
+                    </div>
 
-                    <a href="" class="button-text-modal">작성 완료</a>
+                  </div>
+                </div>
+                <div class="text-field-modal">
+                  <div class="label-and-field-modal">
+                    <div class="label-modal">작성 날짜 <span class="exception-field"
+                        id="transcriptionDate-exception-field"></span></div>
+                    <div class="field-modal">
+                      <input type="text" id="transcriptionDate" name="transcriptionDate" placeholder="YYYY-MM-DD">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="buttons-group-modal">
+                  <div class="button-modal">
+                    <div class="text-container-modal">
+
+                      <input type="hidden" id="id" name="id" value="${goal.id}">
+                      <input type="hidden" id="bookId" name="bookId" value="${goal.bookId}">
+                      <input type="hidden" id="isDelete" name="isDelete" value="1">
+
+                      <input type="submit" class="button-text-modal" value="작성 완료"></input>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
+
+
           </div>
         </div>
       </div>
 
       <script src="../../../../resources/js/myPage/myGoalsBookInfoException.js" defer></script>
+      <script src="../../../../resources/js/myPage/myGoalsWriteTranscriptionExceoption.js" defer></script>
 
     </body>
 

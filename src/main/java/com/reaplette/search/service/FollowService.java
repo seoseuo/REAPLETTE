@@ -17,15 +17,13 @@ public class FollowService {
   public Map<String, String> updateFollow(Map<String, String> param) {
     Map<String, String> result = new HashMap<String, String>();
     FollowVO followVO = followerMapper.searchFollow(param);
-
     if(followVO != null) {
-      followerMapper.deleteFollow(param);
+      int num = followerMapper.deleteFollow(param);
       result.put("result", "팔로우");
     } else {
-      followerMapper.insertFollow(param);
+      int num = followerMapper.insertFollow(param);
       result.put("result", "팔로잉");
     }
-
     return result;
   }
 }

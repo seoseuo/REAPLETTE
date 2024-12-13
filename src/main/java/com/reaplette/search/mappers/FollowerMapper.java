@@ -8,6 +8,6 @@ import java.util.Map;
 @Mapper
 public interface FollowerMapper {
   FollowVO searchFollow(Map<String, String> param);
-  void insertFollow(Map<String, String> param);
-  void deleteFollow(Map<String, String> param);
+  Integer insertFollow(Map<String, String> param);
+  Integer deleteFollow(Map<String, String> param);
 }

@@ -30,7 +30,9 @@
             <!-- 제목 입력 -->
             <div class="form-title">
                 <div class="form-title-title">제목</div>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요." required>
+                <input type="text" id="title" name="title" maxlength="50" required placeholder="50자 이내의 제목을 입력해 주세요."
+                    oninvalid="this.setCustomValidity('50자 이내의 제목을 입력해 주세요.')"
+                    oninput="this.setCustomValidity('')">
             </div>
 
             <!-- 사진 업로드 -->
@@ -50,8 +52,7 @@
                     <div class="image-requirements">
                         <p>Image requirements:</p>
                         <ul>
-                            <li>1. Min. 400 x 400px</li>
-                            <li>2. Max. 2MB</li>
+                            <li>1. Max. 10MB</li>
                         </ul>
                     </div>
                 </div>
@@ -60,7 +61,9 @@
             <!-- 본문 작성 -->
             <div class="section">
                 <label for="content">본문</label>
-                <textarea id="content" name="content" rows="10" placeholder="내용을 입력하세요." required></textarea>
+                <textarea id="content" name="content" rows="10" maxlength="1500" placeholder="1500자 이내의 내용을 입력하세요." required
+                oninvalid="this.setCustomValidity('1500자 이내의 내용을 입력해 주세요.')"
+                oninput="this.setCustomValidity('')"></textarea>
             </div>
 
             <!-- 글 올리기 버튼 -->
