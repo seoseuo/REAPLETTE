@@ -1,7 +1,7 @@
 
 <img src="https://github.com/user-attachments/assets/5eb3eb3b-92bc-48e2-a41a-1ebe7c605f2c" align="center">
 <br>
-<a href="https://chivalrous-saffron-326.notion.site/Reaplette-1650ba93975b80668fbadca4b9abbb8f?pvs=4"><img src="https://img.shields.io/badge/READ ME-E6E6E6?style=for-the-badge&logo=notion&logoColor=black" /></a>
+<a href="https://chivalrous-saffron-326.notion.site/Reaplette-1650ba93975b80668fbadca4b9abbb8f?pvs=4"><img src="https://img.shields.io/badge/상세 보기 링크-E6E6E6?style=for-the-badge&logo=notion&logoColor=black" /></a>
 
 ## 주요 기능
 
@@ -22,4 +22,4 @@
 
 `getBookCategoryInfo` : ISBN 을 받아서 해당 도서의 카테고리 정보를 웹 크롤링.
 
-more : <a href="https://chivalrous-saffron-326.notion.site/Reaplette-1650ba93975b80668fbadca4b9abbb8f?pvs=4"><img src="https://img.shields.io/badge/READ ME-E6E6E6?style=for-the-badge&logo=notion&logoColor=black" /></a>
+more : <a href="https://chivalrous-saffron-326.notion.site/Reaplette-1650ba93975b80668fbadca4b9abbb8f?pvs=4"><img src="https://img.shields.io/badge/상세 보기 링크-E6E6E6?style=for-the-badge&logo=notion&logoColor=black" /></a>
