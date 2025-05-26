@@ -3,6 +3,10 @@
 <br>
 <a href="https://chivalrous-saffron-326.notion.site/Reaplette-1650ba93975b80668fbadca4b9abbb8f?pvs=4"><img src="https://img.shields.io/badge/상세 보기 링크-E6E6E6?style=for-the-badge&logo=notion&logoColor=black" /></a>
 
+[리플렛_포트폴리오.pptx](https://prod-files-secure.s3.us-west-2.amazonaws.com/f02911ff-a5c6-4c9a-ae3e-63ed719e4cfe/c95533ac-0495-4a48-bada-986045f96609/%E1%84%85%E1%85%B5%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A6%E1%86%BA_%E1%84%91%E1%85%A9%E1%84%90%E1%85%B3%E1%84%91%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A9.pptx)
+
+[[BE27] 프로젝트_우수상.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/f02911ff-a5c6-4c9a-ae3e-63ed719e4cfe/10ccdaf1-4279-4f80-9cf5-887b17b95d17/BE27_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%8B%E1%85%AE%E1%84%89%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC.pdf)
+
 ## 주요 기능
 > Reaplette의 주요 기능은 사용자의 활동을 기반으로 카테고리 및 작가에 대한 취향 데이터를 수집하여
 개인 맟춤형 도서를 추천하는 것 입니다.
@@ -27,7 +31,8 @@
 
 ### 개인 도서 추천 : 이용 중 취향 데이터 수집 및 분석 도서 추천
 
-![슬라이드24.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f02911ff-a5c6-4c9a-ae3e-63ed719e4cfe/511c2ef3-176b-43f6-8aed-31b7620cec2e/%E1%84%89%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B324.png)
+![image](https://github.com/user-attachments/assets/3366a90c-255e-43d6-a9cf-a377763c4f97)
+
 
 <aside>
 
@@ -38,7 +43,7 @@
 
 **`getBookCategoryInfo`** : ISBN 을 받아서 해당 도서의 카테고리 정보를 웹 크롤링.
 
-[활동 후 도서 추천.mov](https://prod-files-secure.s3.us-west-2.amazonaws.com/f02911ff-a5c6-4c9a-ae3e-63ed719e4cfe/9a67d6f0-e60c-4262-bdee-0566724be993/%E1%84%92%E1%85%AA%E1%86%AF%E1%84%83%E1%85%A9%E1%86%BC_%E1%84%92%E1%85%AE_%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5_%E1%84%8E%E1%85%AE%E1%84%8E%E1%85%A5%E1%86%AB.mov)
+
 
 ## 메인 페이지 : 접속
 
